@@ -35,7 +35,7 @@ export default function LookingTalent() {
         <View className="p-10 h-screen">
             <View className='my-auto'>
                 <Image className="h-9 w-10" source={require('assets/images/splash.png')} />
-                <Text className='text-2xl mt-4'>Youre almost there</Text>
+                <Text className='text-xl mt-6'>Youre almost there</Text>
                 <Text className='text-4xl mt-5 mb-8'>Setup your profile</Text>
 
                 <View className='mb-8'>
