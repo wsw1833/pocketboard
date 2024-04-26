@@ -183,7 +183,7 @@ export default function TalentProfile() {
         dot: 100
     }
     ]
-
+ 
     return (
         <View className='flex h-screen'>
             <View className={`${openSearch ? 'flex' : 'hidden'} absolute h-full w-full z-10`}>
@@ -218,7 +218,7 @@ export default function TalentProfile() {
                 </View>
             </View>
 
-            <View className={`${openAboutBadge ? 'flex' : 'hidden'} absolute h-full w-full z-10 `}>
+            <View className={`${openAboutBadge ? 'flex' : 'hidden'} absolute h-full w-full z-10`}>
                 <TouchableOpacity className='self-center mt-4 absolute opacity-50 h-full w-full' onPress={() => setOpenAboutBadge(!openAboutBadge)}></TouchableOpacity>
                 <View className='my-auto self-center bg-white rounded-xl p-8 w-full'>
                     <Text className='text-4xl self-center mt-10 mb-10'>About this badge</Text>
@@ -245,7 +245,7 @@ export default function TalentProfile() {
 
 
             </View>
-            <View className={`${openSearch ? 'opacity-30' : openAboutBadge ? 'opacity-30' : openHandShakes ? 'opacity-30' : 'opacity-100'} flex flex-col px-10`}>
+            <View className={`${openSearch ? 'opacity-30' : openAboutBadge ? 'opacity-30' : openHandShakes ? 'opacity-30' : 'opacity-100'} flex flex-col px-10 mt-6`}>
                 <View className='flex flex-row justify-between mt-10 mb-2'>
                     <Link href="/bountylisting"><HomeIcon/></Link>
                     <TouchableOpacity onPress={() => setOpenSearch(!openSearch)}><GlassIcon/></TouchableOpacity>

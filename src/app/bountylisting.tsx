@@ -63,7 +63,7 @@ export default function BountyList() {
                     <Link href={'/'} className="rounded h-12 text-center p-2 mb-4 bg-red-200"><Text className="mt-4 text-xl text-red-600">Disconect Wallet</Text></Link>
                 </View>
             </View>
-            <View className={`${openProfile ? 'opacity-30' : 'opacity-100'} py-10 px-6`}>
+            <View className={`${openProfile ? 'opacity-30' : 'opacity-100'} pt-16 px-6`}>
                 <View className="flex flex-row justify-between">
                     <View></View>
                     <TouchableOpacity onPress={() => setOpenProfile(!openProfile)}><IconU name="user-circle-o" size={30} color="#000" brand /></TouchableOpacity>
@@ -75,16 +75,16 @@ export default function BountyList() {
                         <Image className="rounded-full w-32 h-40" source={require('assets/images/baloom.png')} />
                         <Text className='text-slate-400'>Nothing here... Just a sad balloon</Text>
                     </View>
-
+ 
                     :
-                    <ScrollView className='my-auto'>
+                    <ScrollView className='my-auto w-full'>
                         {bounties.map((bountie, index) =>
-                            <Link key={index} className="flex h-32 mt-4" href={'/joblisting'}>
-                                <View  className='p-4 w-full mt-8 flex flex-row border border-slate-500 rounded flex-wrap items-center justify-between'>
-
-                                    <View className='flex flex-row gap-4'>
-                                        <Image className="rounded-full w-14 h-14" source={require('assets/images/bountie.png')} />
-                                        <View>
+                            <View key={index} className='mt-8'>
+                                <Link href={'/joblisting'} className='h-24'></Link>
+                                <View className='p-4 flex flex-row border border-slate-500 rounded flex-wrap items-center justify-between min-w-full -mt-[87px] pointer-events-none'>
+                                    <View className='flex flex-row gap-4 my-auto items-center'>
+                                        <Image className="rounded-full w-14 h-14 my-auto" source={require('assets/images/bountie.png')} />
+                                        <View className=''>
                                             <Text className='text-md'>{bountie?.whatDo}</Text>
                                             <Text className='mt-1'>by {bountie?.creator}</Text>
                                             <Text className='text-[10px] mt-1'>{bountie?.stats}</Text>
@@ -94,7 +94,7 @@ export default function BountyList() {
                                         <Text className=''>{bountie?.dot} DOT</Text>
                                     </View>
                                 </View>
-                                </Link>
+                            </View>
 
                         )}
                     </ScrollView>

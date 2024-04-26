@@ -31,11 +31,13 @@ export default function ConfirmPage() {
                         <Text className='self-center mt-4 text-xl'>{nameOut}</Text>
                     </View>
                 </View>
-                <Link href={'/sendnft'} className="w-full h-14">
-                    <View className="flex w-full h-full bg-black rounded text-center min-w-full">
-                        <Text className="self-center text-white text-2xl mx-auto my-auto">Complete payment</Text>
+                
+                <View className="w-full h-14 mb-4 mt-8">
+                    <Link href={'/sendnft'} className="w-full h-14"></Link>
+                    <View className="flex w-full h-full bg-black rounded text-center min-w-full -mt-[50px] pointer-events-none">
+                        <Text className="self-center text-white mx-auto my-auto text-xl">Complete payment</Text>
                     </View>
-                </Link>
+                </View>
             </View>
         </View>
     )

@@ -7,7 +7,7 @@ import IconU from 'react-native-vector-icons/FontAwesome'
 
 
 export default function TalentProfile() {
-    const [name, setName] = useState("Person Name");
+    const [name, setName] = useState("Company Name");
     const [code, setCode] = useState("0x43aqwwn12an13ed4f");
     const [twitter, setTwitter] = useState("@t2x0318");
     const [interestedIn, setInterestedIn] = useState("Smart Contract");
@@ -75,8 +75,8 @@ export default function TalentProfile() {
                 </View>
             </View>
 
-            <View className={`${openProfile ? 'opacity-30' : 'opacity-100'} flex px-6 h-full`}>
-                <View className='flex flex-row mt-10 mb-2 justify-between'>
+            <View className={`${openProfile ? 'opacity-30' : 'opacity-100'} flex px-6 h-full mt-16`}>
+                <View className='flex flex-row mb-2 justify-between'>
                     <View></View>
                     <TouchableOpacity onPress={() => setOpenProfile(!openProfile)}><IconU name="user-circle-o" size={30} color="#000" brand /></TouchableOpacity>
                 </View>
@@ -107,11 +107,12 @@ export default function TalentProfile() {
                     :
                     <ScrollView className='my-auto w-full'>
                         {bounties.map((bountie, index) =>
-                            <Link key={index} href={'/bountypage'} className='mt-8'>
-                                <View className='p-4 flex flex-row border border-slate-500 rounded flex-wrap items-center justify-between w-full'>
-                                    <View className='flex flex-row gap-4'>
-                                        <Image className="rounded-full w-14 h-14" source={require('assets/images/bountie.png')} />
-                                        <View>
+                            <View key={index} className='mt-8'>
+                                <Link href={'/bountypage'} className='h-24'></Link>
+                                <View className='p-4 flex flex-row border border-slate-500 rounded flex-wrap items-center justify-between min-w-full -mt-[87px] pointer-events-none'>
+                                    <View className='flex flex-row gap-4 my-auto items-center'>
+                                        <Image className="rounded-full w-14 h-14 my-auto" source={require('assets/images/bountie.png')} />
+                                        <View className=''>
                                             <Text className='text-md'>{bountie?.whatDo}</Text>
                                             <Text className='mt-1'>by {bountie?.creator}</Text>
                                             <Text className='text-[10px] mt-1'>{bountie?.stats}</Text>
@@ -121,7 +122,7 @@ export default function TalentProfile() {
                                         <Text className=''>{bountie?.dot} DOT</Text>
                                     </View>
                                 </View>
-                            </Link>
+                            </View>
 
                         )}
                     </ScrollView>

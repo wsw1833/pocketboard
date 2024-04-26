@@ -35,16 +35,19 @@ export default function AcceptPage() {
                 <View className="border rounded p-4">
                     <Text className="">{network}</Text>
                 </View>
-                <Link href={'/confirmpage '} className="h-14 mt-6 mb-4">
-                    <View className="flex w-full h-full bg-green-200 rounded mx-auto my-auto min-w-full">
-                        <Text className="self-center text-green-900 mx-auto my-auto">Approve the work</Text>
+            
+                <View className="w-full h-14 mb-4 mt-8">
+                    <Link href={'/confirmpage'} className="w-full h-14"></Link>
+                    <View className="flex w-full h-full bg-green-200 rounded text-center min-w-full -mt-[50px] pointer-events-none">
+                        <Text className="self-center text-green-900 mx-auto my-auto text-xl">Approve the work</Text>
                     </View>
-                </Link>
-                <Link href={'/bountypage'} className="w-full h-14">
-                    <View className="flex w-full h-full bg-red-200 rounded text-center min-w-full">
-                        <Text className="self-center text-red-700  mx-auto my-auto">Reject the work</Text>
+                </View>
+                <View className="w-full h-14">
+                    <Link href={'/bountypage'} className="w-full h-14"></Link>
+                    <View className="flex w-full h-full bg-red-200 rounded text-center min-w-full -mt-[50px] pointer-events-none">
+                        <Text className="self-center text-red-700 mx-auto my-auto text-xl">Reject the work</Text>
                     </View>
-                </Link>
+                </View>
             </View>
         </ScrollView>
     )

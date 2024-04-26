@@ -83,17 +83,18 @@ export default function JobListing() {
                         </View>
                     </TouchableOpacity>
                 </View>
-                <View className={`${openSubmission? '':'hidden'} w-full`}>
+                <View className={`${openSubmission ? '' : 'hidden'} w-full`}>
                     {submissions.map((person, index) =>
-                    <Link href={'/acceptpage'} key={index} className="w-full mt-4">
-                        <View className="flex flex-row p-4 items-center rounded-lg border w-full">
-                            <Image className="rounded-full w-14 h-14 self-center " source={require('assets/images/black.png')} />
-                            <View className="ml-4 w-full">
-                                <Text className="text-xl">{person.name}</Text>
-                                <Text className="text-slate-400 text-sm">Submitted on {person.date}</Text>
+                        <View key={index} className="w-full mt-4">
+                            <Link href={'/acceptpage'} className="h-24"></Link>
+                            <View className="flex flex-row p-4 items-center rounded-lg border w-full -mt-[87px] pointer-events-none">
+                                <Image className="rounded-full w-14 h-14 self-center " source={require('assets/images/black.png')} />
+                                <View className="ml-4 w-full">
+                                    <Text className="text-xl">{person.name}</Text>
+                                    <Text className="text-slate-400 text-sm">Submitted on {person.date}</Text>
+                                </View>
                             </View>
                         </View>
-                        </Link>
                     )}
                 </View>
             </View>

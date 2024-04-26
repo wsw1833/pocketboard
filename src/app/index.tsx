@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Page() {
@@ -20,17 +20,22 @@ function Content() {
                 <Text className="text-4xl mt-2">Without Borders.</Text>
             </View>
             <Image className="self-center h-960" source={require('assets/images/hand.png')} />
-            <View className="my-auto flex ">
-                <Link
-                    suppressHighlighting
-                    className="flex h-16 pt-4 text-2xl items-center justify-center overflow-hidden rounded-md bg-gray-900 px-4 py-2 font-medium text-gray-50 web:shadow ios:shadow transition-colors hover:bg-gray-900/90 active:bg-gray-400/90 web:focus-visible:outline-none web:focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300 text-center"
-                    href="/setup"
-                >
-                    {/* <Image className="h-5" source={require('assets/images/logo-button.png')} /> */}
-                <Text>Connect to Astar</Text></Link>
+            <View className="">
+                <View>
+                    <Link href={'/setup'} className="w-full h-14 mt-8"></Link>
+                    <View className="flex flex-1 w-full h-full rounded text-center min-w-full">
+                        <View className="flex flex-row my-auto h-14 -mt-14 z-100 bg-black rounded-lg pointer-events-none">
+                            <View className="flex flex-row mx-auto">
+                                <Image className="h-5 my-auto mr-4" source={require('assets/images/logo-button.png')} />
+                                <Text className="self-center text-white text-xl ">Connect to Astar</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
                 <Text className="self-center mt-4 opacity-50">Powered by Wallet Conenct</Text>
             </View>
-            
         </View>
     );
 }
+
+

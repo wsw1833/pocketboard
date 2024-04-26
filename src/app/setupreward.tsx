@@ -9,9 +9,11 @@ import * as ImagePicker from 'expo-image-picker';
 export default function BountySubmition() {
     const [textArea, setTextArea] = useState('');
     const [networkChoose, setNetworkChoose] = useState('');
+    const [interest, setInterest] = useState('select');
+    const [selectMenuOpen, setSelectMenuOpen] = useState(true);
 
     const BackIcon = () => <Icon name="arrowleft" size={16} color="#000" className="ml-2 pointer-events-none" />;
-    const CaretDownIcon = () => <Icon name="caretdown" size={16} color="#000" className="-ml-8 my-auto pointer-events-none" />;
+    const CaretDownIcon = () => <Icon name="caretdown" size={16} color="#000" className="my-auto ml-auto pointer-events-none" />;
 
 
     useEffect(() => {
@@ -34,8 +36,26 @@ export default function BountySubmition() {
         // Logic to handle the selected image
     };
 
+    const types = [
+        "DOT",
+        "teste 1",
+        "teste 2",
+        ""
+    ]
+
     return (
         <ScrollView>
+            <View className={`${selectMenuOpen ? 'hidden' : 'absolute'} h-full w-full z-10`}>
+                <TouchableOpacity className='h-1/2' onPress={() => setSelectMenuOpen(!selectMenuOpen)}></TouchableOpacity>
+                <ScrollView className='bg-slate-900 mt-auto h-1/2 rounded-t-3xl p-8'>
+                    {types.map((type, index) =>
+                        <TouchableOpacity key={index} className='items-center mb-4' onPress={() => { setSelectMenuOpen(!selectMenuOpen), setInterest(type) }}>
+                            <Text className='text-white text-2xl mb-1'>{type}</Text>
+                        </TouchableOpacity>
+                    )}
+                </ScrollView>
+            </View>
+            
             <View className="py-20 px-8">
                 <Link href={'/newlisting'} className="flex flex-row mt-2">
                     <BackIcon />
@@ -62,22 +82,12 @@ export default function BountySubmition() {
                 </View>
                 <Text className="text-sm mt-4">After this bounty is completed, the token assets need to be awarded to the talent. You can choose the amount of the specified token assets (on Astar Network) as the reward for this bounty.</Text>
                 <Text className="text-slate-400 mt-8 mb-4">Token Amount</Text>
-                <View className="flex flex-row">
+                <View className="flex flex-row mb-8">
                     <TextInput className="h-12 w-8/12 border border-slate-400 rounded-l px-4"></TextInput>
-                    <View className="flex flex-row h-12 mb-8 w-4/12">
-                        <View className='flex items-center h-12 mb-4 w-full border border-slate-400 rounded-r'>
-                            <RNPickerSelect
-                                onValueChange={(networChoose) => setNetworkChoose(networChoose)}
-                                items={[
-                                    { label: 'DOT', value: 'DOT' },
-                                ]}
-                                style={pickerSelectStyles}
-                                useNativeAndroidPickerStyle={false}
-                                placeholder={{ label: "CHOOSE", value: null }}
-                            />
-                        </View>
+                    <TouchableOpacity className='flex flex-row px-4 items-center h-12 border border-slate-400 rounded w-4/12' onPress={() => setSelectMenuOpen(!selectMenuOpen)}>
+                        <Text>{interest}</Text>
                         <CaretDownIcon />
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 <Link href={'/companyprofile'} className="p-4 bg-black rounded text-white text-center text-xl">Confirm the listing</Link>
             </View>
