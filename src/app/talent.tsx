@@ -1,12 +1,13 @@
-import { View, TextInput, Text, Image, Button, StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, Image, Button, StyleSheet, Alert, TouchableOpacity, ScrollView } from 'react-native';
 import { Link } from "expo-router";
 import { Picker } from '@react-native-picker/picker';
 import react, { useState, useEffect } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import RNPickerSelect from 'react-native-picker-select';
 
+
 export default function LookingTalent() {
-    const [selectedLanguage, setSelectedLanguage] = useState();
+    const [interest, setInterest] = useState();
 
     useEffect(() => {
         (async () => {
@@ -31,49 +32,51 @@ export default function LookingTalent() {
 
 
     return (
-        <View className="p-10 h-screen flex justify-between">
-            <View className='my-auto'>
-                <Image className="h-9 w-10" source={require('assets/images/splash.png')} />
-                <Text className='text-xl mt-6'>Youre almost there</Text>
-                <Text className='text-4xl mt-5 mb-8'>Setup your profile</Text>
+        <ScrollView className='min-h-screen'>
+            <View className="p-10 min-h-full flex justify-between">
+                <View className='my-auto'>
+                    <Image className="h-9 w-10" source={require('assets/images/splash.png')} />
+                    <Text className='text-xl mt-6'>Youre almost there</Text>
+                    <Text className='text-4xl mt-5 mb-8'>Setup your profile</Text>
 
-                <View>
-                    <Text className='opacity-40'>Name</Text>
-                    <TextInput className='border rounded h-12 mb-4 mt-2 px-4 border-slate-400 focus:border-black'></TextInput>
-                    <Text className='opacity-40'>One Line Bio</Text>
-                    <TextInput className='border rounded h-12 mb-4 mt-2 px-4 border-slate-400 focus:border-black'></TextInput>
-                    <Text className='mb-2 opacity-40'>Profile picture</Text>
-                    <TouchableOpacity className='border rounded p-4 flex flex-row items-center border-slate-400 focus:border-black' onPress={pickImage}>
-                        <Image className="rounded-full w-14 h-14" source={require('assets/images/black.png')} />
-                        <View className='ml-4'>
-                            <Text className='mb-1 text-xl'>Click to upload media</Text>
-                            <Text className='text-sm'>Maximum size: 5MB</Text>
+                    <View>
+                        <Text className='opacity-40'>Name</Text>
+                        <TextInput className='border rounded h-12 mb-4 mt-2 px-4 border-slate-400 focus:border-black'></TextInput>
+                        <Text className='opacity-40'>One Line Bio</Text>
+                        <TextInput className='border rounded h-12 mb-4 mt-2 px-4 border-slate-400 focus:border-black'></TextInput>
+                        <Text className='mb-2 opacity-40'>Profile picture</Text>
+                        <TouchableOpacity className='border rounded p-4 flex flex-row items-center border-slate-400 focus:border-black' onPress={pickImage}>
+                            <Image className="rounded-full w-14 h-14" source={require('assets/images/black.png')} />
+                            <View className='ml-4'>
+                                <Text className='mb-1 text-xl'>Click to upload media</Text>
+                                <Text className='text-sm'>Maximum size: 5MB</Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        <Text className='mt-4 mb-2 opacity-40'>Area of interest</Text>
+                        <View className='flex items-center h-12 border-slate-400 rounded'>
+                            <RNPickerSelect
+
+                                onValueChange={(interest) => setInterest(interest)}
+                                items={[
+                                    { label: 'Smart Contract', value: 'Smart Contract' },
+                                ]}
+                                style={pickerSelectStyles}
+                                useNativeAndroidPickerStyle={false}
+                                placeholder={{ label: "", value: null }}
+                            />
                         </View>
-                    </TouchableOpacity>
-
-                    <Text className='mt-4 mb-2 opacity-40'>Area of Interest</Text>
-                    <View className='flex items-center h-12 border-slate-400 rounded'>
-                        <RNPickerSelect
-
-                            onValueChange={(interest) => console.log(interest)}
-                            items={[
-                                { label: 'Smart Contract', value: 'Smart Contract' },
-                            ]}
-                            style={pickerSelectStyles}
-                            useNativeAndroidPickerStyle={false}
-                            placeholder={{ label: "", value: null }}
-                        />
+                        <Text className='mt-4 mb-2 opacity-40'>Twitter</Text>
+                        <TextInput className='border rounded h-12 mb-6 px-4 border-slate-400 focus:border-black'>@</TextInput>
                     </View>
-                    <Text className='mt-4 mb-2 opacity-40'>Twitter</Text>
-                    <TextInput className='border rounded h-12 mb-6 px-4 border-slate-400 focus:border-black'>@</TextInput>
-                </View>
 
-            </View>
-            <Link suppressHighlighting className="flex h-16 pt-4 text-2xl items-center justify-center overflow-hidden rounded-md bg-gray-900 px-4 py-2 font-medium text-gray-50 web:shadow ios:shadow transition-colors hover:bg-gray-900/90 active:bg-gray-400/90 web:focus-visible:outline-none web:focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300 text-center" href="/talentprofile">Complete my profile</Link>
+                </View>
+                <Link suppressHighlighting className="flex h-16 pt-4 text-2xl items-center justify-center overflow-hidden rounded-md bg-gray-900 px-4 py-2 font-medium text-gray-50 web:shadow ios:shadow transition-colors hover:bg-gray-900/90 active:bg-gray-400/90 web:focus-visible:outline-none web:focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300 text-center" href="/talentprofile">Complete my profile</Link>
                 {/* <TouchableOpacity className='flex bg-black text-white h-14 rounded mb-4'>
                     <Text className='text-white text-2xl self-center my-auto'>Complete my profile</Text>
                 </TouchableOpacity> */}
-        </View>
+            </View>
+        </ScrollView>
     )
 }
 

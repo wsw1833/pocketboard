@@ -3,7 +3,7 @@ import { ScrollView, View, TextInput, Text, Image, Button, StyleSheet, Alert, To
 import { Link } from 'expo-router';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Iconf from 'react-native-vector-icons/FontAwesome6';
-import { BlurView } from '@react-native-community/blur';
+import Iconh from 'react-native-vector-icons/FontAwesome5';
 
 
 export default function TalentProfile() {
@@ -12,6 +12,8 @@ export default function TalentProfile() {
     const [twitter, setTwitter] = useState("@t2x0318");
     const [goodIn, setGoodIn] = useState("Smart Contract");
     const [handShakes, setHandShakes] = useState(0);
+    const [colorHandShakes, setColorHandShakes] = useState('border-black');
+    const [openHandShakes, setOpenHandShakes] = useState(false);
     const [hall, setHall] = useState(false);
     const [openSearch, setOpenSearch] = useState(false);
     const [openAboutBadge, setOpenAboutBadge] = useState(false);
@@ -23,6 +25,8 @@ export default function TalentProfile() {
     // const [bounties, setBounties] useState<[]>([]);
 
     const CopyIcon = () => <Icon name="content-copy" size={16} color="#000" className="ml-2" />;
+    const GlassIcon = () => <Iconf name="magnifying-glass" size={30} color="#000" className="ml-2" />;
+    const HomeIcon = () => <Iconh name="home" size={30} color="#000" className="ml-2" />;
 
 
     function fatiar(code: string) {
@@ -43,6 +47,63 @@ export default function TalentProfile() {
         return tratado
     }
 
+
+    function ShakeHand() {
+        if (handShakes == 0) {
+            setHandShakes(1);
+            setColorHandShakes('border-yellow-500');
+        } else {
+            setOpenHandShakes(true);
+        }
+    }
+
+    const peoplesShakes = [{
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },
+    {
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },
+    {
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },
+    {
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },{
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },
+    {
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },
+    {
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },
+    {
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },{
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },
+    {
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },
+    {
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    },
+    {
+        name: "John Wayne",
+        whenShakes: "30 April 2024",
+    }
+]
 
     const bounties = [{
         whatDo: "Create a dashboard",
@@ -126,18 +187,39 @@ export default function TalentProfile() {
     return (
         <View className='flex h-screen'>
             <View className={`${openSearch ? 'flex' : 'hidden'} absolute h-full w-full z-10`}>
-            
+
                 <TouchableOpacity className='self-center mt-4 absolute opacity-50 h-full w-full' onPress={() => setOpenSearch(!openSearch)}></TouchableOpacity>
                 <View className='my-auto self-center bg-white rounded-lg p-8 w-full m-8'>
-                    <Text>Paste Talent's Wallet Address Here</Text>
-                    <TextInput className='border rounded h-10 mt-2 mb-6 px-4'></TextInput>
-                    <TouchableOpacity className='bg-black p-2 rounded'><Text className='self-center text-white text-xl'>Search Talent Profile</Text></TouchableOpacity>
-
+                    <View className='my-auto self-center bg-white rounded-lg p-8 w-full m-8'>
+                        <Text>Paste Talent's Wallet Address Here</Text>
+                        <TextInput className='border rounded h-10 mt-2 mb-6 px-4'></TextInput>
+                        <TouchableOpacity className='bg-black p-2 rounded'><Text className='self-center text-white text-xl'>Search Talent Profile</Text></TouchableOpacity>
+                    </View>
                 </View>
             </View>
-            <View className={`${openAboutBadge ? 'flex' : 'hidden'} absolute h-full w-full z-10 bg-slate-200 p-8`}>
 
+            <View className={`${openHandShakes ? 'flex' : 'hidden'} absolute h-full w-full z-10`}>
+                <TouchableOpacity className='self-center mt-4 absolute opacity-50 h-full w-full' onPress={() => setOpenHandShakes(!openHandShakes)}></TouchableOpacity>
+                <View className='my-auto self-center bg-white rounded-lg  w-full m-8'>
+                    <View className='my-auto self-center bg-white rounded-lg p-8 w-full m-8'>
+                        <Text className='text-xl'>{name}</Text>
+                        <Text className='text-4xl mb-4 mt-4'>{handShakes} Handshakes 🤝</Text>
+                        <ScrollView className='max-h-96'>
+                            {peoplesShakes.map((person, index) =>
+                                <View key={index} className='flex flex-row rounded-lg border p-4 items-center mb-4'>
+                                    <Image className="rounded-full w-14 h-14 self-center " source={require('assets/images/black.png')} />
+                                    <View className='ml-4'>
+                                        <Text className='text-2xl mb-2'>{person.name}</Text>
+                                        <Text>Handshake on {person.whenShakes}</Text>
+                                    </View>
+                                </View>)}
+                        </ScrollView>
+                    </View>
+                </View>
+            </View>
 
+            <View className={`${openAboutBadge ? 'flex' : 'hidden'} absolute h-full w-full z-10 `}>
+                <TouchableOpacity className='self-center mt-4 absolute opacity-50 h-full w-full' onPress={() => setOpenAboutBadge(!openAboutBadge)}></TouchableOpacity>
                 <View className='my-auto self-center bg-white rounded-xl p-8 w-full'>
                     <Text className='text-4xl self-center mt-10 mb-10'>About this badge</Text>
                     <Image className="rounded-full w-32 h-32 self-center mb-4" source={require('assets/images/bountie.png')} />
@@ -159,15 +241,14 @@ export default function TalentProfile() {
                             <Text className=''>{dot} DOT</Text>
                         </View>
                     </View>
-                    <TouchableOpacity className='self-center mt-4' onPress={() => setOpenAboutBadge(!openAboutBadge)}><Text className='text-red-700'>Exit</Text></TouchableOpacity>
                 </View>
 
 
             </View>
-            <View className='flex flex-col p-10'>
+            <View className={`${openSearch ? 'opacity-30' : openAboutBadge ? 'opacity-30' : openHandShakes ? 'opacity-30' : 'opacity-100'} flex flex-col px-10`}>
                 <View className='flex flex-row justify-between mt-10 mb-2'>
-                    <Link href="/bountylisting"><Image className="rounded-full w-8 h-8" source={require('assets/images/home.png')} /></Link>
-                    <TouchableOpacity onPress={() => setOpenSearch(!openSearch)}><Image className="rounded-full w-8 h-8" source={require('assets/images/magnifying-glass.png')} /></TouchableOpacity>
+                    <Link href="/bountylisting"><HomeIcon/></Link>
+                    <TouchableOpacity onPress={() => setOpenSearch(!openSearch)}><GlassIcon/></TouchableOpacity>
                 </View>
                 <View className='flex flex-col items-center'>
                     <Image className="rounded-full w-32 h-32" source={require(imageProfile)} />
@@ -178,9 +259,9 @@ export default function TalentProfile() {
                     <View className='bg-green-100 p-3 mt-4 mb-8 rounded'>
                         <Text className='text-[#052000]'>Hey I'm good in {goodIn}</Text>
                     </View>
-                    <View className='border rounded-full px-4 py-2 '>
+                    <TouchableOpacity className={`${colorHandShakes} border-2 rounded-full px-4 py-2`} onPress={() => ShakeHand()}>
                         <Text>{handShakes} hand shakes 🤝</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 <View className='flex flex-row mb-2 justify-around mt-10 border-b border-slate-300'>
                     <TouchableOpacity className={`${hall ? '' : 'border-b'} p-2`} onPress={() => setHall(false)}>

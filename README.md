@@ -1,7 +1,5 @@
-Talent profile: area of interest (quais as opções, só posso escolher uma ou mais de uma? parece ser somente uma)
-limitar tamanho máximo de imagem 5mb
-criar função de seleção de looking for talent/work
-criar função de trocar imagem ao selecionar imagem
-associar valores dos inputs as variáveis e testar 
-consfigurar função de redirecionamento caso haja uma conta logada
-associar onValue e onChange
+bun i
+bun run ios (macOS) // for development
+bun run android (windows) // for development or
+bun run start (select the environment)
+Talent profile: area of interest (what are the options, can I choose one or more? seems to be only one) limit maximum image size to 5mb create function to select looking for talent/work create function to change image when selecting image associate input values with variables and test configure redirection function if there is a logged-in account associate onValue and onChange

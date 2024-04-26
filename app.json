@@ -16,6 +16,9 @@
       ]
     ],
     "name": "teste",
-    "slug": "teste"
+    "slug": "teste",
+    "ios": {
+      "bundleIdentifier": "tess"
+    }
   }
 }
