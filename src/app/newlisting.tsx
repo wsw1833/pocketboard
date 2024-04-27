@@ -4,8 +4,7 @@ import { Link } from "expo-router";
 import Icon from 'react-native-vector-icons/AntDesign';
 import RNPickerSelect from 'react-native-picker-select';
 import * as DocumentPicker from 'expo-document-picker';
-
-
+import MyDatePicker from "./datapicker";
 
 
 export default function NewListing() {
@@ -70,10 +69,7 @@ export default function NewListing() {
                 <TouchableOpacity className="h-12 w-full flex flex-row border border-slate-400 mt-4 rounded px-4 justify-between text-center items-center" onPress={selectPDF} ><Text className="text-slate-500">Click to upload document</Text><UploadIcon /></TouchableOpacity>
                 <View className="flex flex-col items-start mt-6 mb-10">
                     <Text className="text-sm mb-2 text-slate-500">Due Date</Text>
-                    <View className="flex flex-row h-12">
-                        <TextInput placeholder="01/01/2024" className="border rounded border-slate-400 focus:border-black h-12 mb-8 w-full px-4" ></TextInput>
-                        <CalendarIcon />
-                    </View>
+                    <MyDatePicker />
                 </View>
                 <Link href={'/setupreward'} className="p-4 bg-black rounded text-white text-center mb-20">Continue to setup reward</Link>
             </View>

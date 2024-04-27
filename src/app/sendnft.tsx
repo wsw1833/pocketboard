@@ -12,7 +12,7 @@ export default function SendNFT() {
 
 
                 <View className="w-full h-14 mb-4 mt-8">
-                    <Link href={'/bountypage'} className="w-full h-14"></Link>
+                    <Link href={'/medal'} className="w-full h-14"></Link>
                     <View className="flex w-full h-full bg-black rounded text-center min-w-full -mt-[50px] pointer-events-none">
                         <Text className="self-center text-white mx-auto my-auto text-xl">Send NFT Badge to talent</Text>
                     </View>
