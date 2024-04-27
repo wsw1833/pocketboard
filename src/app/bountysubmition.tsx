@@ -2,7 +2,7 @@ import { useState } from "react"
 import { View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity } from "react-native"
 import { Link } from "expo-router";
 import Icon from 'react-native-vector-icons/AntDesign';
-import RNPickerSelect from 'react-native-picker-select';
+
 
 
 export default function BountySubmition() {
