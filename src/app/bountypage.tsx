@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import IconC from 'react-native-vector-icons/Fontisto';
 
 
-export default function JobListing() {
+export default function BountyPage() {
     const [projectName, setProjectName] = useState('Create a dashboard');
     const [creator, setCreator] = useState('Astar');
     const [contract, setContract] = useState('Smart Contract');

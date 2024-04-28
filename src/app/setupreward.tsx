@@ -6,7 +6,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import * as ImagePicker from 'expo-image-picker';
 
 
-export default function BountySubmition() {
+export default function SetupReward() {
     const [textArea, setTextArea] = useState('');
     const [networkChoose, setNetworkChoose] = useState('');
     const [interest, setInterest] = useState('select');

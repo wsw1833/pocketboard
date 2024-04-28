@@ -15,9 +15,9 @@ function Content() {
     return (
         <View className="flex my-auto justify-between h-full">
             <View className="my-auto">
-                <Text className="text-md">Welcome to Pocket Board</Text>
-                <Text className="text-4xl mt-8">Where Talents</Text>
-                <Text className="text-4xl mt-2">Without Borders.</Text>
+                <Text className="text-xl">Welcome to Pocket Board</Text>
+                <Text className="text-5xl mt-8">Where Talents</Text>
+                <Text className="text-5xl mt-4">Without Borders.</Text>
             </View>
             <Image className="self-center h-960" source={require('assets/images/hand.png')} />
             <View className="">

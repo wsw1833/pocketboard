@@ -19,6 +19,9 @@
     "slug": "teste",
     "ios": {
       "bundleIdentifier": "tess"
+    },
+    "android": {
+      "package": "a.a"
     }
   }
 }

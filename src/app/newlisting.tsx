@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from "react-native"
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, Button, Platform } from "react-native"
 import { Link } from "expo-router";
 import Icon from 'react-native-vector-icons/AntDesign';
 import * as DocumentPicker from 'expo-document-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 export default function NewListing() {
     const [textArea, setTextArea] = useState('');
     const [interest, setInterest] = useState('select');
     const [networkChoose, setNetworkChoose] = useState('');
-    const [date, setDate] = useState('');
     const [selectMenuOpen, setSelectMenuOpen] = useState(false);
     const [file, setFile] = React.useState(null);
     const [calendarOpen, setCalendarOpen] = useState(false);
@@ -23,6 +23,9 @@ export default function NewListing() {
     const [month, setMonth] = useState(1);
     const [day, setDay] = useState(1);
     const [daysMonthSelected, setDaysMounthSelected] = useState([]);
+    const [date, setDate] = useState(new Date());
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
 
 
     const CalendarIcon = () => <Icon name="calendar" size={16} color="#000" className="" />;
@@ -30,6 +33,26 @@ export default function NewListing() {
     const ArrowDownIcon = () => <Icon name="arrowdown" size={16} color="#fff" className="" />;
     const CheckIcon = () => <Icon name="check" size={16} color="#fff" className="" />;
 
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+    };
+
+    const showMode = (currentMode) => {
+        setShow(true);
+        setMode(currentMode);
+    };
+
+    const showDatepicker = () => {
+        showMode('date');
+    };
+
+    const showTimepicker = () => {
+        showMode('time');
+    };
+
+    
 
     const meses = [
         {
@@ -126,76 +149,10 @@ export default function NewListing() {
         "teste 2",
         ""
     ]
-    const dataTratada = (day < 10 ? '0' : '') + String(day) + ' / ' + (month < 10 ? '0' : '') + String(month) + ' / ' + String(year)
+    const dateArr = String(date).split(' ');
+    const dataTratada = dateArr[0] +'/'+ dateArr[1] + '/' + dateArr[2]
     return (
         <ScrollView>
-            <View className={`${calendarOpen ? '' : 'hidden'} absolute flex w-screen h-screen z-50`}>
-                <TouchableOpacity className="h-2/3 w-full" onPress={() => setCalendarOpen(!calendarOpen)}></TouchableOpacity>
-
-
-                <View className="bg-slate-900 w-full h-full rounded-3xl">
-                    <View className="flex flex-row justify-between p-6">
-                        <TouchableOpacity className="bg-slate-800 rounded-lg p-2 w-[30%] text-center items-center" onPress={() => { setViewYear(true), setViewMonth(false), setViewDay(false) }}>
-                            <Text className="text-white text-2xl">Year</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity className="bg-slate-800 rounded-lg p-2 w-[30%] text-center items-center" onPress={() => { setViewYear(false), setViewMonth(true), setViewDay(false) }}>
-                            <Text className="text-white text-2xl">Month</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity className="bg-slate-800 rounded-lg p-2 w-[30%] text-center items-center" onPress={() => { setViewYear(false), setViewMonth(false), setViewDay(true) }}>
-                            <Text className="text-white text-2xl">Day</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View className="flex flex-row justify-between px-6">
-                        <View className="w-[30%]">
-                            <View className={`${viewYear ? '' : 'hidden'} w-1/3 border border-slate-800 self-center`}></View>
-                        </View>
-                        <View className="w-[30%]">
-                            <View className={`${viewMonth ? '' : 'hidden'} w-1/3 border border-slate-800 self-center`}></View>
-                        </View>
-                        <View className="w-[30%]">
-                            <View className={`${viewDay ? '' : 'hidden'} w-1/3 border border-slate-800 self-center`}></View>
-                        </View>
-                    </View>
-
-
-                    <View className={`${viewYear ? '' : 'hidden'} w-full h-1/3`}>
-                        <View className="flex flex-row items-center text-center mx-auto my-auto">
-                            <TouchableOpacity className="bg-slate-800 h-12 pt-4 px-1 rounded" onPress={() => setYear(year - 1)}><ArrowDownIcon></ArrowDownIcon></TouchableOpacity>
-                            <TextInput className="w-40 border mx-4 rounded border-slate-600 text-white text-center h-12">{year}</TextInput>
-                            <TouchableOpacity className={`bg-slate-800 h-12 pt-4 px-1 rounded`} onPress={() => setYear(year + 1)}><ArrowUpIcon></ArrowUpIcon></TouchableOpacity>
-                        </View>
-                        <TouchableOpacity className="flex bg-slate-800 rounded py-1 w-[75px] items-center mb-[4%] mx-auto" onPress={() => { setViewYear(!year), setViewMonth(!viewMonth) }}><CheckIcon /></TouchableOpacity>
-                    </View>
-
-
-                    <View className={`${viewMonth ? '' : 'hidden'} w-full h-1/3 `}>
-                        <View className="flex flex-row flex-wrap p-6 max-w-screen justify-between">
-                            {meses.map((month, index) =>
-
-                                <TouchableOpacity key={index} className="flex bg-slate-800 rounded py-1 w-[75px] items-center mb-[4%]" onPress={() => { setMonth(month.number), setViewMonth(!viewMonth), setViewDay(!viewDay) }}>
-                                    <Text className="text-white text-xl">{month.number}</Text>
-                                    <Text className="text-white">{month.name}</Text>
-                                </TouchableOpacity>
-                            )}
-                        </View>
-                    </View>
-
-
-                    <View className={`${viewDay ? '' : 'hidden'} flex flex-row gap-14 p-6 mx-auto items-start justify-start w-screen max-w-screen flex-wrap`}>
-                        <View className="flex flex-row flex-wrap px-6 max-w-screen justify-between">
-                            {daysMonthSelected.map(day =>
-                                <TouchableOpacity key={day} className="flex bg-slate-800 rounded py-1 w-[55px] items-center mb-[4%]" onPress={() => { setDay(day), setViewMonth(false), setViewDay(false), setCalendarOpen(false) }}>
-                                    <Text className="text-white pointer-events-none">{day}</Text>
-                                </TouchableOpacity>
-                            )}
-                        </View>
-                    </View>
-
-
-
-                </View>
-            </View>
-
             <View className={`${selectMenuOpen ? 'absolute' : 'hidden'} h-full w-full z-10`}>
                 <TouchableOpacity className='h-1/2' onPress={() => setSelectMenuOpen(!selectMenuOpen)}></TouchableOpacity>
                 <ScrollView className='bg-slate-900 mt-auto h-1/2 rounded-t-3xl p-8'>
@@ -225,7 +182,21 @@ export default function NewListing() {
                 <Text className="mt-6 text-slate-500">Detail Attachment</Text>
                 <TouchableOpacity className="h-12 w-full flex flex-row border border-slate-400 mt-4 rounded px-4 justify-between text-center items-center" onPress={selectPDF} ><Text className="text-slate-500">Click to upload document</Text><UploadIcon /></TouchableOpacity>
                 <Text className="text-sm mb-2 text-slate-500 mt-6">Due Date</Text>
-                <TouchableOpacity className="border rounded border-slate-500 w-full justify-between flex flex-row h-12 px-4 items-center mb-6" onPress={() => setCalendarOpen(!calendarOpen)}><Text>{dataTratada}</Text><CalendarIcon /></TouchableOpacity>
+                <View>
+                    <View>
+                        <TouchableOpacity className="rounded flex flex-row border border-slate-400 px-4 h-12 mb-6 justify-between items-center" onPress={showDatepicker}><Text>{dataTratada}</Text><CalendarIcon /></TouchableOpacity>
+                    </View>
+                    {show && (
+                        <DateTimePicker
+                            testID="dateTimePicker"
+                            value={date}
+                            // mode={mode}
+                            is24Hour={true}
+                            display="default"
+                            onChange={onChange}
+                        />
+                    )}
+                </View>
                 <Link href={'/setupreward'} className="p-4 bg-black rounded text-white text-center mb-20">Continue to setup reward</Link>
             </View>
         </ScrollView>

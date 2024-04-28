@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import IconC from 'react-native-vector-icons/Fontisto';
 
 
-export default function JobListing() {
+export default function Medal() {
     const [projectName, setProjectName] = useState('Create a dashboard');
     const [creator, setCreator] = useState('Astar');
     const [contract, setContract] = useState('Smart Contract');
@@ -87,13 +87,14 @@ export default function JobListing() {
                     {submissions.map((person, index) =>
                         <View key={index} className="w-full mt-4">
                             <Link href={'/acceptpage'} className="h-24"></Link>
-                            <View className={`${index == 0? 'border-4' :'border'} flex flex-row p-4 items-center rounded-lg w-full -mt-[87px] pointer-events-none`}>
+                            <View className={`${index == 0 ? 'border-4' : 'border'} flex flex-row p-4 items-center rounded-lg w-full -mt-[87px] pointer-events-none`}>
                                 <Image className="rounded-full w-14 h-14 self-center " source={require('assets/images/black.png')} />
                                 <View className="ml-4 w-full">
                                     <Text className="text-xl">{person.name}</Text>
                                     <Text className="text-slate-400 text-sm">Submitted on {person.date}</Text>
                                 </View>
-                                <Text className={`${index == 1 ? 'hidden' :''} -ml-28 text-4xl`}>🏅</Text>
+                                <Text className={`${index == 1 ? 'hidden' : ''} -ml-28 text-4xl`}>🏅</Text>
+                                <Image className={`${index == 1 ? '' : 'hidden'} -ml-28 w-10 h-12`} source={require('assets/images/baloom.png')} />
                             </View>
                         </View>
                     )}

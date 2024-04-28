@@ -72,7 +72,7 @@ export default function TalentProfile() {
     {
         name: "John Wayne",
         whenShakes: "30 April 2024",
-    },{
+    }, {
         name: "John Wayne",
         whenShakes: "30 April 2024",
     },
@@ -87,7 +87,7 @@ export default function TalentProfile() {
     {
         name: "John Wayne",
         whenShakes: "30 April 2024",
-    },{
+    }, {
         name: "John Wayne",
         whenShakes: "30 April 2024",
     },
@@ -103,7 +103,7 @@ export default function TalentProfile() {
         name: "John Wayne",
         whenShakes: "30 April 2024",
     }
-]
+    ]
 
     const bounties = [{
         whatDo: "Create a dashboard",
@@ -183,7 +183,7 @@ export default function TalentProfile() {
         dot: 100
     }
     ]
- 
+
     return (
         <View className='flex h-screen'>
             <View className={`${openSearch ? 'flex' : 'hidden'} absolute h-full w-full z-10`}>
@@ -200,11 +200,11 @@ export default function TalentProfile() {
 
             <View className={`${openHandShakes ? 'flex' : 'hidden'} absolute h-full w-full z-10`}>
                 <TouchableOpacity className='self-center mt-4 absolute opacity-50 h-full w-full' onPress={() => setOpenHandShakes(!openHandShakes)}></TouchableOpacity>
-                <View className='my-auto self-center bg-white rounded-lg  w-full m-8'>
-                    <View className='my-auto self-center bg-white rounded-lg p-8 w-full m-8'>
+                <View className='my-auto self-center rounded-lg h-3/4 bg-white w-full m-8'>
+                    <View className='my-auto self-center rounded-lg px-8 p-2 h-full bg-white w-full m-8'>
                         <Text className='text-xl'>{name}</Text>
                         <Text className='text-4xl mb-4 mt-4'>{handShakes} Handshakes 🤝</Text>
-                        <ScrollView className='max-h-96'>
+                        <ScrollView className=''>
                             {peoplesShakes.map((person, index) =>
                                 <View key={index} className='flex flex-row rounded-lg border p-4 items-center mb-4'>
                                     <Image className="rounded-full w-14 h-14 self-center " source={require('assets/images/black.png')} />
@@ -247,8 +247,8 @@ export default function TalentProfile() {
             </View>
             <View className={`${openSearch ? 'opacity-30' : openAboutBadge ? 'opacity-30' : openHandShakes ? 'opacity-30' : 'opacity-100'} flex flex-col px-10 mt-6`}>
                 <View className='flex flex-row justify-between mt-10 mb-2'>
-                    <Link href="/bountylisting"><HomeIcon/></Link>
-                    <TouchableOpacity onPress={() => setOpenSearch(!openSearch)}><GlassIcon/></TouchableOpacity>
+                    <Link href="/bountylisting"><HomeIcon /></Link>
+                    <TouchableOpacity onPress={() => setOpenSearch(!openSearch)}><GlassIcon /></TouchableOpacity>
                 </View>
                 <View className='flex flex-col items-center'>
                     <Image className="rounded-full w-32 h-32" source={require(imageProfile)} />
