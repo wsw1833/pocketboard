@@ -1,27 +1,4 @@
 {
-  "expo": {
-    "scheme": "acme",
-    "userInterfaceStyle": "automatic",
-    "orientation": "default",
-    "web": {
-      "output": "static",
-      "bundler": "metro"
-    },
-    "plugins": [
-      [
-        "expo-router",
-        {
-          "origin": "https://n"
-        }
-      ]
-    ],
-    "name": "teste",
-    "slug": "teste",
-    "ios": {
-      "bundleIdentifier": "tess"
-    },
-    "android": {
-      "package": "a.a"
-    }
-  }
+  "name": "blendapp",
+  "displayName": "blendapp"
 }
