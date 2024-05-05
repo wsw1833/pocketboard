@@ -20,7 +20,7 @@ Traditionally, a Web3.0 based talent recruitment network will be blockchain-nati
 
 2. Recruiters hiring a talent in another chain need to transfer payout assets using a third party bridge infrastructure and work on the talents' native platform. If there is remaining payout assets, recruiters need to transfer back which required native token gas fee payment.
 
-To conclude, cross-chain collaboration using traditional approach is inconvinience, prone to error, cost-ineffective, time-wasting. The status quo is tackled by our project!
+To conclude, cross-chain collaboration using traditional approach is inconvinience, prone to error, cost-ineffective, time-wasting. The status quo is tackled by our project leveraging XCM approach.
 
 ### Why PocketBoard?
 
