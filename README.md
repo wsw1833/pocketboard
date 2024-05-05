@@ -22,7 +22,7 @@ Traditionally, a Web 3.0-based talent recruitment network will be blockchain-nat
 
 To conclude, cross-chain collaboration using the traditional approach is inconvenient, prone to error, cost-ineffective, and time-wasting. Our project challenges the status quo by utilizing an XCM approach and a comprehensive collaboration pipeline.
 
-### Why PocketBoard?
+### PocketBoard is the solution!
 
 ✌️ No platform and tool jumping, cross-chain collaboration workflow under one roof.
 
