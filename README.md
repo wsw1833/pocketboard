@@ -6,7 +6,8 @@
 
 <br>
 
-![Group 12 (1)](https://github.com/wsw1833/pocket-board/assets/69501009/3e88a73d-ba69-4659-a5cf-9518e322fb4d)
+![Group 12 (3)](https://github.com/wsw1833/pocket-board/assets/69501009/a0251744-2c8f-49d3-a543-0ab2cdf0f41d)
+
 
 ## Introducing PocketBoard
 
