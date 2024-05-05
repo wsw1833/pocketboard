@@ -38,12 +38,26 @@ To conclude, cross-chain collaboration using the traditional approach is inconve
 
 ### 1️⃣ Recruiters & Talents Onboarding Experience
 
+![Seamless Onboarding Experience](https://github.com/wsw1833/pocket-board/assets/69501009/7feaa0a6-3e6d-4762-b379-ebd0f81b66b5)
+
 ### 2️⃣ Bounty Setup
+
+![Bounty Setup](https://github.com/wsw1833/pocket-board/assets/69501009/785cd081-777b-48a1-97f9-23df604a9044)
+
 
 ### 3️⃣ Bounty Solution Submission
 
+![Bounty Setup-1](https://github.com/wsw1833/pocket-board/assets/69501009/d618b9c7-77f9-4679-aeb9-4636f36fef68)
+
 ### 4️⃣ Work Review and XCM Payout
+
+![Review and Payout](https://github.com/wsw1833/pocket-board/assets/69501009/c9033c3c-52e4-459d-91ea-fbdaa86a70ff)
 
 ### 5️⃣ The Proof-Of-Work Badge
 
+![Review and Payout-1](https://github.com/wsw1833/pocket-board/assets/69501009/1ed3c354-718c-4b25-8236-424d6fc1ec9c)
+
 ### 6️⃣ On-Chain Reputation System: The Handshake
+
+![HandShake](https://github.com/wsw1833/pocket-board/assets/69501009/acd675c2-c272-4f95-ac84-47872e628ab5)
+
