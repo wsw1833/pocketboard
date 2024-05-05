@@ -20,7 +20,7 @@ Traditionally, a Web 3.0-based talent recruitment network will be blockchain-nat
 
 2. Recruiters who hire a talent from another chain must transfer payout assets using a third-party bridge infrastructure and work on the talent's native platform. If there are any remaining payout assets, recruiters must transfer them back, which necessitates a native token gas fee payment.
 
-To conclude, cross-chain collaboration using the traditional approach is inconvenient, prone to error, cost-ineffective, and time-wasting. Our project challenges the status quo by utilizing an XCM approach and a comprehensive collaboration pipeline.
+To conclude, **cross-chain collaboration using the traditional approach is inconvenient, prone to error, cost-ineffective, and time-wasting**. Our project challenges the status quo by utilizing an XCM approach and a comprehensive collaboration pipeline.
 
 ### PocketBoard is the solution!
 
@@ -36,11 +36,13 @@ To conclude, cross-chain collaboration using the traditional approach is inconve
 
 ## Features Highlight
 
-### 1️⃣ Recruiters & Talents Onboarding Experience
+### 1️⃣ Recruiters & Talents Seamless Onboarding Experience
 
 ![Seamless Onboarding Experience](https://github.com/wsw1833/pocket-board/assets/69501009/7feaa0a6-3e6d-4762-b379-ebd0f81b66b5)
 
-### 2️⃣ Bounty Setup
+PocketBoard offers users the flexibility to connect their wallets to the parachain network of their choice, allowing them to seamlessly continue their journey within their familiar native chain. The platform caters to two distinct account roles: talent and recruiter. With a talent account, users can actively hunt bounties, while those with a recruiter account can post bounty tasks and seek proficient talent to collaborate with. The onboarding process is straightforward: users simply provide their general information, specify their areas of interest, link their social media accounts, and they're ready to engage. Notably, talents can effortlessly transition to recruiter status within PocketBoard by establishing a recruiter account under their existing wallet; the same applies to recruiters, for flexibility and easy management.
+
+### 2️⃣ Comprehensive Bounty Setup Pipeline
 
 ![Bounty Setup](https://github.com/wsw1833/pocket-board/assets/69501009/785cd081-777b-48a1-97f9-23df604a9044)
 
@@ -49,7 +51,7 @@ To conclude, cross-chain collaboration using the traditional approach is inconve
 
 ![Bounty Setup-1](https://github.com/wsw1833/pocket-board/assets/69501009/d618b9c7-77f9-4679-aeb9-4636f36fef68)
 
-### 4️⃣ Work Review and XCM Payout
+### 4️⃣ Work Review System and XCM-Powered Cross-Chain Payout
 
 ![Review and Payout](https://github.com/wsw1833/pocket-board/assets/69501009/c9033c3c-52e4-459d-91ea-fbdaa86a70ff)
 
