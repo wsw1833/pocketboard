@@ -14,7 +14,7 @@ PocketBoard is a mobile-based DApp revolutionizing talent recruitment network ac
 
 ### What PocketBoard tackles?
 
-Traditionally, a Web 3.0-based talent recruitment network will be blockchain-native, which means that a recruiter can only reach out to talents inside the native ecosystem, and bounty payouts will only involve native tokens. This is bad for both recruiters and talent because of the restrictions on native hiring and working. If there is better talent to recruit or there is a good work opportunity in another blockchain ecosystem, the cross-chain workflow involved will be complicated and an inconvenience. 
+Traditionally, a Web 3.0-based talent recruitment network will be blockchain-native, which means that a recruiter can only reach out to talents inside the native ecosystem, and bounty payouts will only involve native tokens. This is bad for both recruiters and talent because of the restrictions on native hiring and working. If there is better talent to recruit or there is a good work opportunity in another blockchain ecosystem, the cross-chain workflow involved will be complicated and inconvenience. 
 
 1. Talents working cross-chain must use the recruiters' native platform. Talents must transfer back the payout after receiving it using a third-party bridge infrastructure and the required native token for gas fee payment.
 
