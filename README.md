@@ -10,6 +10,8 @@
 
 ## Introducing PocketBoard
 
+PocketBoard is a mobile-based DApp revolutionizing talent recruitment network across multiple parachains by integrating XCM (Cross-Consensus Messaging) technology, eliminating borders for seamless cross-parachain collaboration anywhere, anytime, all within the user's pocket. The core innovation of PocketBoard is to improve the cross-parachain workflow by letting both parties (recruiter and talent) to complete the bounty journey in one platform, compared to traditional cross-chain collaboration which need to jump across different platforms and networks. Now, recruiters from any parachain can fund bounties with their native tokens, while talents can opt to receive payouts in either the recruiter's native token or their own parachain token. 
+
 ### What PocketBoard solve?
 ### Why PocketBoard?
 
