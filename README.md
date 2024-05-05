@@ -46,19 +46,20 @@ PocketBoard offers users the flexibility to connect their wallets to the paracha
 
 ![Bounty Setup](https://github.com/wsw1833/pocket-board/assets/69501009/785cd081-777b-48a1-97f9-23df604a9044)
 
-Recruiter can add a new bounty listing from the profile. Creating a bounty listing required providing general information of the bounty, provide additional reference attachments, as well as setting a due date which will provide a countdown for the talent. The bounty setup process also involve in uploading a proof of work badge design which will be used to mint as a erc-721 based nft badge and send to the talent which the work is approved and mark as completed. The recruiter also need to set a bounty reward amount which also have the option to choose the desired token assets in his native chain which supports XCM-powered cross-chain token asset transfer. After submitting the bounty, it will be listed in the bounty directories which can be access by the talents on PocketBoard.
+Recruiters have the ability to create a new bounty listing directly from their profile. To create a bounty listing, recruiters must provide general details about the bounty, attach relevant reference materials, and designate a due date, initiating a countdown for talents. The setup process also involves uploading a proof of work badge design which is used for minting as an ERC-721 based NFT badge, to be awarded to the talent upon completion and approval of the task. Moreover, recruiters are required to specify the bounty reward amount, with the option to select the desired token assets (supported XC20) from their native chain to fund the bounty. Once the bounty is submitted, it is showcased in the bounty directories, accessible to talents within PocketBoard.
 
 ### 3️⃣ Bounty Solution Submission
 
-![Bounty Setup-1](https://github.com/wsw1833/pocket-board/assets/69501009/d618b9c7-77f9-4679-aeb9-4636f36fef68)
+![Bounty Setup](https://github.com/wsw1833/pocket-board/assets/69501009/4b162a00-9f11-4ab0-bd6d-c2619ac555a8)
 
-Recruiters have the ability to create a new bounty listing directly from their profile. To create a bounty listing, recruiters must provide general details about the bounty, attach relevant reference materials, and designate a due date, initiating a countdown for talents. The setup process also involves uploading a proof of work badge design which is used for minting as an ERC-721 based NFT badge, to be awarded to the talent upon completion and approval of the task. Moreover, recruiters are required to specify the bounty reward amount, with the option to select the desired token assets from their native chain to fund the bounty. Once the bounty is submitted, it is showcased in the bounty directories, accessible to talents within PocketBoard.
+Once a talent has completed a bounty and formulated a solution, they can submit it through the portal. The submission process allows the talent to include a link to their solution and leave a comment for the reviewer. At this juncture, the talent has the option to choose their desired parachain (the parachain the talent is at) to receive the bounty payout, or they can opt to retain the recruiter's native chain for payout. If the talent selects a different parachain to receive the reward payout, an XCM cross-chain token asset transfer is initiated. This process transfers the recruiter's native token asset to the talent's parachain. Conversely, if the talent opts to receive the payout in the recruiter's native token asset, it is directly transferred to the talent's native wallet. Upon submission, the solution enters the submission list within the recruiter's bounty listing, awaiting review.
+
 
 ### 4️⃣ Work Review System and XCM-Powered Cross-Chain Payout
 
 ![Review and Payout](https://github.com/wsw1833/pocket-board/assets/69501009/c9033c3c-52e4-459d-91ea-fbdaa86a70ff)
 
-
+Talents' submissions to a bounty listing can be reviewed by the recruiter, who has the authority to mark the submission as either approved or rejected. Approved submissions progress to the next phase, where the bounty is closed and marked as completed. This entails initiating the payout to the talent, based on the pre-specified amount.The payout exclusively involves using the recruiter's native token asset. If the talent has opted to receive the payout on another parachain, as specified during the submission, an XCM cross-chain token asset transfer is seamlessly executed in the background. Notably, this transfer occurs automatically without requiring any action from the recruiter, simplifying the cross-chain process. Furthermore, the proof-of-work badge associated with the bounty is minted and rewarded to the talent who contributed to its completion.
 
 ### 5️⃣ The Proof-Of-Work Badge
 
