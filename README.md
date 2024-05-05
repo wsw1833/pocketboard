@@ -46,20 +46,31 @@ PocketBoard offers users the flexibility to connect their wallets to the paracha
 
 ![Bounty Setup](https://github.com/wsw1833/pocket-board/assets/69501009/785cd081-777b-48a1-97f9-23df604a9044)
 
+Recruiter can add a new bounty listing from the profile. Creating a bounty listing required providing general information of the bounty, provide additional reference attachments, as well as setting a due date which will provide a countdown for the talent. The bounty setup process also involve in uploading a proof of work badge design which will be used to mint as a erc-721 based nft badge and send to the talent which the work is approved and mark as completed. The recruiter also need to set a bounty reward amount which also have the option to choose the desired token assets in his native chain which supports XCM-powered cross-chain token asset transfer. After submitting the bounty, it will be listed in the bounty directories which can be access by the talents on PocketBoard.
 
 ### 3️⃣ Bounty Solution Submission
 
 ![Bounty Setup-1](https://github.com/wsw1833/pocket-board/assets/69501009/d618b9c7-77f9-4679-aeb9-4636f36fef68)
 
+Recruiters have the ability to create a new bounty listing directly from their profile. To create a bounty listing, recruiters must provide general details about the bounty, attach relevant reference materials, and designate a due date, initiating a countdown for talents. The setup process also involves uploading a proof of work badge design which is used for minting as an ERC-721 based NFT badge, to be awarded to the talent upon completion and approval of the task. Moreover, recruiters are required to specify the bounty reward amount, with the option to select the desired token assets from their native chain to fund the bounty. Once the bounty is submitted, it is showcased in the bounty directories, accessible to talents within PocketBoard.
+
 ### 4️⃣ Work Review System and XCM-Powered Cross-Chain Payout
 
 ![Review and Payout](https://github.com/wsw1833/pocket-board/assets/69501009/c9033c3c-52e4-459d-91ea-fbdaa86a70ff)
+
+
 
 ### 5️⃣ The Proof-Of-Work Badge
 
 ![Review and Payout-1](https://github.com/wsw1833/pocket-board/assets/69501009/1ed3c354-718c-4b25-8236-424d6fc1ec9c)
 
+Whenever a recruiter creates a bounty task, a custom-designed proof of work badge is uploaded, intended to be minted into an ERC-721 based NFT badge. This Proof of Work NFT badge serves as a reward for talents upon successful submission and approval of their solutions by the recruiter. Subsequently, the minted proof of work badge is transferred and nested into the user's ERC-7401 based NFT talent profile. All accumulated proof-of-work badges of a talent are prominently showcased in the Hall of Fame section, accessible for public viewing by all PocketBoard users.
+
 ### 6️⃣ On-Chain Reputation System: The Handshake
 
 ![HandShake](https://github.com/wsw1833/pocket-board/assets/69501009/acd675c2-c272-4f95-ac84-47872e628ab5)
+
+Each talent profile on PocketBoard is structured as an ERC-7409-based NFT, uniquely equipped to facilitate on-chain emoji reactions. Leveraging this NFT standard, PocketBoard constructs an on-chain reputation mechanism for talents. Users across PocketBoard can search for and express their admiration or support for a particular talent by reacting with a handshake emoji. The talent profile NFT meticulously records all received handshakes, with the quantity serving as a reflection of the talent's valuation and credibility. Talents with a higher count of handshakes are more likely to be assigned to lucrative bounty tasks, further validating their expertise and trustworthiness within the community.
+
+
 
