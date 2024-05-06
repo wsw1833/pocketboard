@@ -32,7 +32,6 @@ const BountiesPage = ({ navigation }) => {
         fetchBounties()
       },[])
 
-      console.log(allBounties)
     return (
         <View style={styles.container}>
             <View style={{position : "absolute", top : "7%", left : "6%"}}>
@@ -48,11 +47,11 @@ const BountiesPage = ({ navigation }) => {
                   <Image source={{uri : item?.badge}} style={{width : 60, height : 60, borderRadius : 100}}/>
                   <View style={{flexDirection:"column", marginLeft : 15}}>
                   <Text style={{color : "#000", fontSize : 16, fontFamily : "Inter-Regular"}}>{item?.title}</Text>
-                  <Text style={{color : "#000", fontSize : 12, fontFamily : "Inter-Regular"}}>by {'Astar'}</Text>
+                  <Text style={{color : "#000", fontSize : 12, fontFamily : "Inter-Regular"}}>by {item?.createdBy}</Text>
                   <Text style={{color : "#000", fontSize : 10, fontFamily : "Inter-Regular"}}>Due Date {(item?.dueDate)}</Text>
                   </View>
                   </View>
-                  <Text style={{color : "#000", fontSize : 14, fontFamily : "Inter-Bold"}}>{item?.reward} DOT</Text>
+                  <Text style={{color : "#000", fontSize : 14, fontFamily : "Inter-Bold"}}>{item?.reward} ASTR</Text>
                 </TouchableOpacity>
                 )) 
               }

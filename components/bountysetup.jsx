@@ -32,8 +32,9 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 const BountySetup = ({ navigation }) => {
-    const { title, setTitle, description, setDescription, fileUpload, setFileUpload, dueDate, setDueDate} = useData()
+    const { title, setTitle, description, setDescription, fileUpload, setFileUpload, dueDate, setDueDate, interest, setInterest} = useData()
     const [showDatePicker, setShowDatePicker] = useState(false);
+    const [loadingDoc, setLoadingDoc] = useState(false);
     const handleDateChange = (event, selectedDate) => {
       const currentDate = selectedDate || dueDate;
       setShowDatePicker(Platform.OS === 'ios');
@@ -46,12 +47,17 @@ const BountySetup = ({ navigation }) => {
     const {wallet, setUserData, userData, talentSelected, clientSelected, setImageuri} = useData()
 
     const types = [
-      "Smart Contract",
-      "teste 1",
-      "teste 2",
+      "⁠Infrastructure",
+      "⁠DAOs",
+      "⁠DeFi",
+      "⁠DePIN",
+      "⁠Consumer dApps",
+      "⁠Wallet and Payment",
+      "⁠NFTs",
+      "⁠Gaming",
+      "⁠Cross-Chain"
   ]
 
-  const [interest, setInterest] = useState(types[0]);
 
   function generateRandomString(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -109,11 +115,12 @@ const BountySetup = ({ navigation }) => {
       }
     };
     const handleChooseFile = async () => {
+
       try {
         const pickedFile = await DocumentPicker.pickSingle({
           type: [DocumentPicker.types.allFiles],
         });
-    
+        setLoadingDoc(true);
         const randomName = generateRandomString(10);
         const { data, error } = await supabase
           .storage
@@ -125,9 +132,12 @@ const BountySetup = ({ navigation }) => {
     
         if (error) {
           console.error('Error uploading document:', error.message);
+          setLoadingDoc(false);
+          Alert.alert("Error", error)
         } else {
           console.log('Document uploaded successfully:', data);
           setFileUpload(`https://isikpgdobtvvdcfkrruy.supabase.co/storage/v1/object/public/unity/${data.path}`);
+          setLoadingDoc(false);
         }
       } catch (error) {
         console.error('Error picking document:', error);
@@ -227,7 +237,13 @@ const BountySetup = ({ navigation }) => {
             <Text style={{marginLeft : 10}}>{'Detail Attachment'}</Text>
             <TouchableOpacity onPress={withPermission}>
               <View style={styles.choosefileview}>
+                {loadingDoc ? (
+                  <ActivityIndicator/>
+                ) : fileUpload ? (
+                  <Text>Document Uploaded.</Text>
+                ) : (
                 <Text>Click to upload document</Text>
+                )}
               <Image source={require("../assets/Images/uplo.png")} style={{width: 20, height: 20}}/>
               </View>
             </TouchableOpacity>
@@ -252,7 +268,14 @@ const BountySetup = ({ navigation }) => {
               />
             )}
 
-            <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('BountyStep2')}}>
+            <TouchableOpacity style={styles.button} onPress={()=>{
+              if(title === null || description === null || fileUpload === null || dueDate === null){
+                Alert.alert("Fields can't be empty")
+                return
+              } else {
+              navigation.navigate('BountyStep2')}
+              }
+            }>
                 <Text style={{fontWeight : "500", fontSize : 20, color : "#fff", fontFamily : "Inter-Regular"}} >Continue to setup reward</Text>
             </TouchableOpacity>
             </View>
@@ -265,6 +288,7 @@ const BountySetup = ({ navigation }) => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor : "#fff"
       },
       button : {
         backgroundColor : "#000",

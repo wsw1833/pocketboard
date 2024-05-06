@@ -100,7 +100,7 @@ const BountySubmission = ({ navigation }) => {
                 borderRadius : 5,
                 borderColor : '#B2B2B2',
                 borderWidth : 1,
-                height : 100,
+                height : 60,
                 width : "100%",
             }}
             />

@@ -19,7 +19,7 @@ import { useData } from './datacontext';
 
 
 const BountyDetailClient = ({ navigation }) => {
-    const { selectedBounty, userData } = useData()
+    const { selectedBounty, userData, setSelectedSubmission, isTalent } = useData()
     const [countdown, setCountdown] = useState('');
 
   useEffect(() => {
@@ -63,12 +63,12 @@ const BountyDetailClient = ({ navigation }) => {
         }
       };
 
-      console.log(selectedBounty)
+      console.log(isTalent)
     return (
         <View style={styles.container}>
             <View style={{position : "absolute", top : "7%", left : "6%"}}>
 
-            <TouchableOpacity onPress={()=>{navigation.navigate('ClientProfile')}}>
+            <TouchableOpacity onPress={()=>{isTalent ? navigation.navigate('Profile') : navigation.navigate('ClientProfile')}}>
             <Text style={{color : "#000", fontSize : 14, marginBottom : 20}}>{'<- Back'}</Text>
             </TouchableOpacity>
             <Image source={{uri : selectedBounty?.badge}} style={{width : 100, height : 100, borderRadius : 100}}/>
@@ -82,7 +82,7 @@ const BountyDetailClient = ({ navigation }) => {
                 <View style={{flexDirection : "row", alignItems : "center"}}>
                     <Image source={require("../assets/Images/mb.png")} style={{width : 40, height : 40}}/>
                     <Text style={{fontFamily : "Inter-Regular", fontSize : 20, color : "#000", marginLeft : 10}}>{selectedBounty?.reward}</Text>
-                    <Text style={{fontFamily : "Inter-Regular", fontSize : 14, color : "#000", marginLeft : 5}}>DOT</Text>
+                    <Text style={{fontFamily : "Inter-Regular", fontSize : 14, color : "#000", marginLeft : 5}}>ASTR</Text>
                 </View>
                 <View style={{flexDirection : "row", alignItems : "center", marginLeft : 20}}>
                     <Image source={require("../assets/Images/clock.png")} style={{width : 30, height : 30}}/>
@@ -105,13 +105,25 @@ const BountyDetailClient = ({ navigation }) => {
             <Text style={{fontFamily : "Inter-Regular", fontSize : 20, color : "#000", textDecorationLine : "underline", marginTop : 10}}>Submissions</Text>
             <Text style={{fontFamily : "Inter-Regular", fontSize : 20, color : "#fff", backgroundColor : "#000", borderRadius : 60, paddingHorizontal : 10, marginTop : 12, height : 30, marginLeft : 10}}>{selectedBounty?.submission ? selectedBounty?.submission?.length : '0'}</Text>
             </View>
-            <ScrollView>
+
+            <ScrollView style={{height : "25%", width : "100%"}}>
               {selectedBounty?.submission && selectedBounty?.submission.map((item, index) => (
-                <TouchableOpacity onPress={()=>{ navigation.navigate('BountyDetailTalent')}} key={index} style={{borderRadius : 4, borderColor : "rgba(0,0,0,0.5)", borderWidth : 1, flexDirection : "row", margin : 10, justifyContent : "space-between", padding : 10, alignItems : "center"}}>
+                <TouchableOpacity onPress={()=>{
+                  if(!isTalent)
+                  {setSelectedSubmission(item); 
+                  navigation.navigate('SubmissionPage')}
+                  else {
+                    
+                  }
+                  
+                  }} key={index} style={{borderRadius : 4, borderColor : selectedBounty?.awarded === item?._id ? '#000' : "rgba(0,0,0,0.5)", borderWidth : selectedBounty?.awarded === item?._id ? 2 : 1, flexDirection : "row", margin : 10, justifyContent : "space-between", padding : 10, alignItems : "center",}}>
                   <View style={{flexDirection : "row", alignItems : "center"}}>
                   <Image source={{uri : item?.profileImage}} style={{width : 60, height : 60, borderRadius : 100}}/>
                   <View style={{flexDirection:"column", marginLeft : 15}}>
+                  <View style={{flexDirection : "row", justifyContent : "space-between"}}>
                   <Text style={{color : "#000", fontSize : 16, fontFamily : "Inter-Regular"}}>{item?.author}</Text>
+                  <Image source={selectedBounty?.awarded === item?._id ? require("../assets/Images/award.png") : require("../assets/Images/sad.png")} style={{width : 20, height : 40}}/>
+                  </View>
                   <Text style={{color : "#000", fontSize : 10, fontFamily : "Inter-Regular"}}>Submitted on {(item?.submissionDate)}</Text>
                   </View>
                   </View>

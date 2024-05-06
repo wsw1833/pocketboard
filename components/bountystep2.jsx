@@ -12,6 +12,7 @@ import {
   ActivityIndicator,
   Platform,
   ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import axios from 'axios';
@@ -32,11 +33,12 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 const BountyStep2 = ({ navigation }) => {
-    const { title, setTitle, description, setDescription, fileUpload, setFileUpload, dueDate, setDueDate} = useData()
+    const { title, setTitle, description, setDescription, fileUpload, setFileUpload, dueDate, interest} = useData()
     const {wallet, setUserData, userData, talentSelected, clientSelected, setImageuri} = useData()
     const [image, setImage] = useState('');
     const [imageUpload, setImageUpload] = useState('');
     const [tokenAmount, setTokenAmount] = useState();
+    const [loadingImg, setLoadingImg] = useState(false);
 
   function generateRandomString(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -106,6 +108,7 @@ const BountyStep2 = ({ navigation }) => {
           } else if (response.error) {
             console.log('Image picker error: ', response.error);
           } else {
+            setLoadingImg(true);
             const uri = response.assets?.[0]?.uri;
 
             setImage({
@@ -121,6 +124,7 @@ const BountyStep2 = ({ navigation }) => {
             });
             console.log(data)
             setImageUpload(`https://isikpgdobtvvdcfkrruy.supabase.co/storage/v1/object/public/unity/${data.path}`);
+            setLoadingImg(false);
           }
         });
       };
@@ -129,7 +133,7 @@ const BountyStep2 = ({ navigation }) => {
         const post = await axios.post(`${baseURL}/createBounty`, {
             walletAddress : userData?.walletAddress,
             title,
-            interest : "Smart Contract",
+            interest : interest,
             description,
             attachment : fileUpload,
             dueDate,
@@ -143,8 +147,8 @@ const BountyStep2 = ({ navigation }) => {
 
   
     return (
-        <View style={styles.container}>
-            <View style={{position : "absolute", top : "7%", left : "6%"}}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+            <View style={{position : "absolute", top : "3%", left : "6%"}}>
 
             <TouchableOpacity onPress={()=>{navigation.navigate('BountySetup')}}>
             <Text style={{color : "#000", fontSize : 14, marginBottom : 20}}>{'<- Back'}</Text>
@@ -154,20 +158,28 @@ const BountyStep2 = ({ navigation }) => {
             <Text style={{fontWeight : "500", fontSize : 34, color : "#000000", marginBottom : 10, fontFamily : "Inter-Regular"}}>Bounty reward</Text>
 
             <Text style={{fontSize : 22, fontFamily : "Inter-Regular", textDecorationLine : "underline", color : "#000", marginBottom : 15}}>Work Badge</Text>
-            <Text style={{fontSize : 14, fontFamily : "Inter-Light", color : "#000", marginBottom : 15}}>After this bounty is completed, work badge will be awarded to the talent as an achievement. 
+            <Text style={{fontSize : 12, fontFamily : "Inter-Light", color : "#000", marginBottom : 15, marginRight : 40}}>After this bounty is completed, work badge will be awarded to the talent as an achievement. 
                 It will be a soul-bounded NFT which will be nested in the talent’s profile.</Text>
             </View>
 
             
             <View style={{position : "absolute", top : "40%", left : "5%"}}>
             <View style={{width : '90%'}}>
-            <Text style={{marginLeft : 10}}>{'Badge Design'}</Text>
+            <Text style={{marginLeft : 10, marginTop : 30}}>{'Badge Design'}</Text>
             <TouchableOpacity onPress={withPermission}>
               <View style={styles.choosefileview}>
               <Image source={image ? {uri: image.uri} : require("../assets/Images/black.png")} style={{width: 50, height: 50, borderRadius : 50}}/>
               <View>
+                {loadingImg ? (
+                  <ActivityIndicator/>
+                ) : imageUpload ? (
+                  <Text>Image Uploaded</Text>
+                ) : (
+                  <>
                 <Text>Click to upload media</Text>
                 <Text>Maximum size: 5MB</Text>
+                </>
+                )}
               </View>
               </View>
             </TouchableOpacity>
@@ -175,7 +187,7 @@ const BountyStep2 = ({ navigation }) => {
 
             <Text style={{fontSize : 22, fontFamily : "Inter-Regular", textDecorationLine : "underline", color : "#000", marginBottom : 15}}>Token Reward</Text>
             <Text style={{fontSize : 12, fontFamily : "Inter-Light", color : "#000", marginBottom : 15, paddingRight : 20}}>After this bounty is completed, the token assets need to be awarded to the talent. 
-            You can choose the amount of the specified token assets (on Astar Network) as the reward for this bounty.</Text>
+            You can choose the amount of the specified token assets (on Moonbeam Network) as the reward for this bounty.</Text>
             
 
             <View style={{width : '90%'}}>
@@ -197,7 +209,7 @@ const BountyStep2 = ({ navigation }) => {
             />
             <View style={{width : 1, height : 70, borderColor : "rgba(0,0,0,0.4)", borderWidth : 0.5}}/>
             <View style = {{flexDirection : "row", alignItems : "center", justifyContent : "space-between", paddingHorizontal : 20, width : "40%"}}>
-            <Text style={{fontSize : 20, fontFamily : "Inter-Bold", color : "#000"}}>DOT</Text>
+            <Text style={{fontSize : 20, fontFamily : "Inter-Bold", color : "#000"}}>ASTR</Text>
             <Image source={require("../assets/Images/Polygon.png")}/>
             </View>
             </View>
@@ -206,7 +218,7 @@ const BountyStep2 = ({ navigation }) => {
                 <Text style={{fontWeight : "500", fontSize : 20, color : "#fff", fontFamily : "Inter-Regular"}} >Confirm the listing</Text>
             </TouchableOpacity>
             </View>
-        </View>
+        </KeyboardAvoidingView>
       );
     };
     
@@ -215,6 +227,7 @@ const BountyStep2 = ({ navigation }) => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor : "#fff",
       },
       button : {
         backgroundColor : "#000",

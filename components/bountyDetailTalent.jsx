@@ -65,14 +65,13 @@ const BountyDetailTalent = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={{position : "absolute", top : "7%", left : "6%"}}>
-
-            <TouchableOpacity onPress={()=>{navigation.navigate('ClientProfile')}}>
+            <ScrollView style={{position : "absolute", top : "7%", left : "6%", height : "90%", marginRight : 40}}>
+            <TouchableOpacity onPress={()=>{navigation.navigate('Profile')}}>
             <Text style={{color : "#000", fontSize : 14, marginBottom : 20}}>{'<- Back'}</Text>
             </TouchableOpacity>
             <Image source={{uri : selectedBounty?.badge}} style={{width : 100, height : 100, borderRadius : 100}}/>
             <Text style={{fontFamily : "Inter-Regular", fontSize : 30, color : "#000"}}>{selectedBounty?.title}</Text>
-            <Text style={{fontFamily : "Inter-Regular", fontSize : 12, color : "#000"}}>By {'astar'}</Text>
+            <Text style={{fontFamily : "Inter-Regular", fontSize : 12, color : "#000"}}>By {selectedBounty?.createdBy}</Text>
             <View style={{backgroundColor : "#D7FFD3", marginTop : 20, marginBottom : 20, padding : 10}}>
                 <Text style={{fontFamily : "Inter-Regular", fontSize : 14, color : "#000"}}>{selectedBounty?.interest}</Text>
             </View>
@@ -81,7 +80,7 @@ const BountyDetailTalent = ({ navigation }) => {
                 <View style={{flexDirection : "row", alignItems : "center"}}>
                     <Image source={require("../assets/Images/mb.png")} style={{width : 40, height : 40}}/>
                     <Text style={{fontFamily : "Inter-Regular", fontSize : 20, color : "#000", marginLeft : 10}}>{selectedBounty?.reward}</Text>
-                    <Text style={{fontFamily : "Inter-Regular", fontSize : 14, color : "#000", marginLeft : 5}}>DOT</Text>
+                    <Text style={{fontFamily : "Inter-Regular", fontSize : 14, color : "#000", marginLeft : 5}}>ASTR</Text>
                 </View>
                 <View style={{flexDirection : "row", alignItems : "center", marginLeft : 20}}>
                     <Image source={require("../assets/Images/clock.png")} style={{width : 30, height : 30}}/>
@@ -103,7 +102,7 @@ const BountyDetailTalent = ({ navigation }) => {
             <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('BountySubmission')}}>
                 <Text style={{fontWeight : "500", fontSize : 20, color : "#fff", fontFamily : "Inter-Regular"}} >Complete Bounty Submission</Text>
             </TouchableOpacity>
-            </View>
+            </ScrollView>
 
         </View>
       );

@@ -11,14 +11,20 @@ export const DataProvider = ({ children }) => {
     const [tokenIds, setTokenIds] = useState(null);
     const [clickedItem, setClickedItem] = useState(null);
     const [balance, setBalance] = useState(null);
+    const [balanceASTR, setBalanceASTR] = useState(null);
     const [talentSelected, setTalentSelected] = useState(false);
     const [clientSelected, setClientSelected] = useState(false);
     const [allBounties, setAllBounties] = useState();
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [fileUpload, setFileUpload] = useState();
+    const [title, setTitle] = useState(null);
+    const [description, setDescription] = useState(null);
+    const [interest, setInterest] = useState(null);
+    const [fileUpload, setFileUpload] = useState(null);
     const [dueDate, setDueDate] = useState(new Date());
     const [selectedBounty, setSelectedBounty] = useState();
+    const [selectedSubmission, setSelectedSubmission] = useState();
+    const [actionTaken, setActionTaken] = useState(false);
+    const [privateKey, setPrivateKey] = useState();
+    const [isTalent, setIsTalent] = useState(false);
 
   return (
     <DataContext.Provider value={{ wallet, setWallet, userData, setUserData, imageuri, setImageuri, s3URL, setS3URL, identityName, setIdentityName, metaData, setMetaData, 
@@ -30,7 +36,13 @@ export const DataProvider = ({ children }) => {
     description, setDescription,
     fileUpload, setFileUpload,
     dueDate, setDueDate,
-    selectedBounty, setSelectedBounty
+    selectedBounty, setSelectedBounty,
+    selectedSubmission, setSelectedSubmission,
+    actionTaken, setActionTaken,
+    privateKey, setPrivateKey,
+    balanceASTR, setBalanceASTR,
+    isTalent, setIsTalent,
+    interest, setInterest
     }}>
       {children}
     </DataContext.Provider>

@@ -159,7 +159,8 @@ const CreateWallet = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    fontFamily : 'Inter-Black'
+    fontFamily : 'Inter-Black',
+    backgroundColor : "#fff"
   },
   backgroundImage: {
     position: 'absolute',

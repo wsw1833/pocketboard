@@ -4,21 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useEffect } from 'react';
 import SplashScreen from './components/splashscreen';
 import CreateWallet from './components/createwallet';
-import ImportWallet from './components/importwallet';
 import Welcome from './components/welcome';
 import Landing from './components/Landing';
 import CreateProfile from './components/createProfile';
 import Profile from './components/profile';
-import CreateNew from './components/createnew';
-import PayBtc from './components/paybtc';
-import CreateIdentity from './components/createidentity';
-import IdentityCreated from './components/identitycreated';
-import PassportMinting from './components/passportminting';
-import MintedSuccess from './components/mintedsuccess';
-import LoadingImage from './components/loadingImage';
-import IndividualIdentity from './components/myidentityindividual';
-import ThreedView from './components/threedview';
-import TestIframe from './components/testiframe';
 import ClientProfile from './components/clientProfile';
 import BountyDetailClient from './components/BountyDetailClient';
 import BountySetup from './components/bountysetup';
@@ -27,6 +16,9 @@ import BountyStep2 from './components/bountystep2';
 import BountiesPage from './components/BountiesPage';
 import BountyDetailTalent from './components/bountyDetailTalent';
 import BountySubmission from './components/bountysubmission';
+import SubmissionPage from './components/submissionPage';
+import RewardTalent from './components/RewardTalent';
+import SendBadge from './components/sendBadge';
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -40,7 +32,7 @@ const App = () => {
         }}
         >
           <Stack.Screen name="Landing" component={Landing}/>
-          <Stack.Screen name="Splash" component={SplashScreen} options={{ headerTitle: '' }}/>
+          <Stack.Screen name="Splash" component={SplashScreen}/>
           <Stack.Screen name="CreateWallet" component={CreateWallet}/>
           <Stack.Screen name="Welcome" component={Welcome}/>
           <Stack.Screen name="CreateProfile" component={CreateProfile}/>
@@ -52,10 +44,13 @@ const App = () => {
           <Stack.Screen name="BountyDetailTalent" component={BountyDetailTalent}/>
           <Stack.Screen name="BountiesPage" component={BountiesPage}/>
           <Stack.Screen name="BountySubmission" component={BountySubmission}/>
+          <Stack.Screen name="SubmissionPage" component={SubmissionPage}/>
+          <Stack.Screen name="RewardTalent" component={RewardTalent}/>
+          <Stack.Screen name="SendBadge" component={SendBadge}/>
+
         </Stack.Navigator>
       </NavigationContainer>
       </DataProvider>
-     
   );
 };
 

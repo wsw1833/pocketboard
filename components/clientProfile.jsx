@@ -9,6 +9,7 @@ import {
   Alert,
   Touchable,
   Vibration,
+  Linking,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import axios from 'axios';
@@ -21,7 +22,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const ClientProfile = ({ navigation }) => {
-    const {wallet, setUserData, userData, setClickedItem, balance, setBalance, allBounties, setAllBounties, setSelectedBounty, setClientSelected, setTalentSelected} = useData();
+    const {wallet, setUserData, userData, setClickedItem, balance, setBalance, allBounties, setAllBounties, setSelectedBounty, setClientSelected, setTalentSelected, actionTaken, balanceASTR, setBalanceASTR, setIsTalent} = useData();
     const [showMenu, setShowMenu] = useState(false);
 
     const formatWalletAddress = (walletAddress) => {
@@ -42,12 +43,34 @@ const ClientProfile = ({ navigation }) => {
       Alert.alert(wallet,'Copied')
     };
 
+    const copyTwitter = () => {
+      Clipboard.setString(userData?.client?.twitter);
+      Alert.alert('Twitter username Copied')
+    };
+    const login = async () => {
+      const sign = await axios.post(`${baseURL}/getProfile`, {
+          walletAddress : wallet.toLowerCase()
+      })
+      if(sign.data){
+          setUserData(sign.data.user);
+      }
+    }
+
   const fetchBalance = async () => {
     const balance = await axios.post(`${baseURL}/getBalance`, {
       walletAddress : userData?.walletAddress
     })
     if(balance){
       setBalance(balance.data.balance);
+    }
+  }
+
+  const fetchTokenBalance = async () => {
+    const balance = await axios.post(`${baseURL}/getASTRBalance`, {
+      walletAddress : userData?.walletAddress
+    })
+    if(balance){
+      setBalanceASTR(balance.data.resolvedBalance);
     }
   }
 
@@ -59,10 +82,40 @@ const ClientProfile = ({ navigation }) => {
   }
   
   useEffect(()=>{
+    login()
     fetchBalance();
+    fetchTokenBalance()
+    fetchBounties()
+  },[actionTaken])
+
+  useEffect(()=>{
+    login();
     fetchBounties()
   },[])
 
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchBounties();
+    }, [])
+  );
+
+  const handleOpenURL = () => {
+    if (userData?.client?.website) {
+      Linking.canOpenURL(userData?.client?.website)
+        .then(supported => {
+          if (!supported) {
+            return Linking.openURL(userData?.client?.website);
+          } else {
+            return Linking.openURL(userData?.client?.website);
+          }
+        })
+        .catch(error => {
+          console.error('Error occurred while checking URL support:', error);
+        });
+        }
+      };
+
+      console.log(allBounties)
 
     return (
             <TouchableOpacity style={styles.container} onPress={()=>{setShowMenu(false)}}>
@@ -77,19 +130,26 @@ const ClientProfile = ({ navigation }) => {
                 <TouchableOpacity onPress={()=>{
                     if(userData?.serviceProvider){
                     navigation.navigate('Profile')
+                    setShowMenu(false)
                     } else {
                         setTalentSelected(true);
                         setClientSelected(false);
                         navigation.navigate('CreateProfile')
+                        setShowMenu(false)
                     }
                     }} style={{backgroundColor : "#000", height : 50, width : "80%", borderRadius : 4, alignItems : "center", justifyContent : "center"}}>
-                    <Text style={{color : "#fff", fontFamily : "Inter-Regular", fontSize : 18}}>Switch to talent profile</Text>
+                    <Text style={{color : "#fff", fontFamily : "Inter-Regular", fontSize : 18}}>Switch to Talent profile</Text>
                 </TouchableOpacity>
                 <View style={{borderWidth : 0.3, borderColor : "rgba(0,0,0,0.5)", margin: 20, width : "60%"}}></View>
-                <TouchableOpacity onPress={()=>{navigation.navigate('Landing')}} style={{backgroundColor : "#FFE4E4", height : 50, width : "80%", borderRadius : 4, alignItems : "center", justifyContent : "center"}}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Splash')}} style={{backgroundColor : "#FFE4E4", height : 50, width : "80%", borderRadius : 4, alignItems : "center", justifyContent : "center"}}>
                     <Text style={{color : "#FF4545", fontFamily : "Inter-Regular", fontSize : 18}}>Disconnect Wallet</Text>
                 </TouchableOpacity>
             </View>
+
+            {showMenu && (
+          <TouchableOpacity style={styles.overlay} onPress={()=>{setShowMenu(false)}}>
+          </TouchableOpacity>
+        )}
           
             <View style={{justifyContent : "center", alignItems : "center", marginTop : 4}}>
             <Image
@@ -102,20 +162,25 @@ const ClientProfile = ({ navigation }) => {
                 <Image source={require("../assets/Images/copy.png")} style={{width : 20, height : 20}}></Image>
                 </View>
                 </TouchableOpacity>
+              
 
                 <View style={{flexDirection : 'row', alignItems : "center"}}>
                 <Text style={{fontWeight : "400", fontSize : 14, color : "#000000", margin : 10,fontFamily : "Inter-Regular"}}>Balance : {balance ? `${balance} GLMR` : 'Loading Balance ...'}</Text>
                 </View>
 
                 <View style={{flexDirection : 'row', alignItems : "center"}}>
-                <Image source={require("../assets/Images/website.png")}/>
-                <Text style={{fontWeight : "400", fontSize : 14, color : "#000000", margin : 10, fontFamily : "Inter-Regular"}}>{userData?.client?.website}</Text>
+                <Text style={{fontWeight : "400", fontSize : 14, color : "#000000", margin : 10,fontFamily : "Inter-Regular"}}>ASTR Balance : {balanceASTR ? `${balanceASTR} ASTR` : 'Loading Balance ...'}</Text>
                 </View>
 
-                <View style={{flexDirection : 'row', alignItems : "center"}}>
+                <TouchableOpacity onPress={handleOpenURL} style={{flexDirection : 'row', alignItems : "center"}}>
+                <Image source={require("../assets/Images/website.png")}/>
+                <Text style={{fontWeight : "400", fontSize : 14, color : "#000000", margin : 10, fontFamily : "Inter-Regular"}}>{userData?.client?.website}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={copyTwitter} style={{flexDirection : 'row', alignItems : "center"}}>
                   <Image source={require("../assets/Images/twitter.png")}/>
                 <Text style={{fontWeight : "400", fontSize : 14, color : "#000000", margin : 10, fontFamily : "Inter-Regular"}}>@{userData?.client?.twitter}</Text>
-                </View>
+                </TouchableOpacity>
             </View>
             
             
@@ -127,17 +192,17 @@ const ClientProfile = ({ navigation }) => {
             </View>
 
             <ScrollView>
-              {allBounties && allBounties.some(item => item.createdBy === userData?.client.companyName) && allBounties.map((item, index) => (
-                <TouchableOpacity onPress={()=>{setSelectedBounty(item); navigation.navigate('BountyDetailClient')}} key={index} style={{borderRadius : 4, borderColor : "rgba(0,0,0,0.5)", borderWidth : 1, flexDirection : "row", margin : 10, justifyContent : "space-between", padding : 10, alignItems : "center"}}>
+              {allBounties && allBounties.filter(item => item.bountyOwner === userData?.walletAddress).map((item, index) => (
+                <TouchableOpacity onPress={()=>{setSelectedBounty(item); setIsTalent(false); navigation.navigate('BountyDetailClient')}} key={index} style={{borderRadius : 4, borderColor : "rgba(0,0,0,0.5)", borderWidth : 1, flexDirection : "row", margin : 10, justifyContent : "space-between", padding : 10, alignItems : "center"}}>
                   <View style={{flexDirection : "row", alignItems : "center"}}>
                   <Image source={{uri : item?.badge}} style={{width : 60, height : 60, borderRadius : 100}}/>
                   <View style={{flexDirection:"column", marginLeft : 15}}>
                   <Text style={{color : "#000", fontSize : 16, fontFamily : "Inter-Regular"}}>{item?.title}</Text>
-                  <Text style={{color : "#000", fontSize : 12, fontFamily : "Inter-Regular"}}>by {userData?.client.companyName}</Text>
+                  <Text style={{color : "#000", fontSize : 12, fontFamily : "Inter-Regular"}}>by {item.createdBy}</Text>
                   <Text style={{color : "#000", fontSize : 10, fontFamily : "Inter-Regular"}}>Due Date {(item?.dueDate)}</Text>
                   </View>
                   </View>
-                  <Text style={{color : "#000", fontSize : 14, fontFamily : "Inter-Bold"}}>{item?.reward} DOT</Text>
+                  <Text style={{color : "#000", fontSize : 14, fontFamily : "Inter-Bold"}}>{item?.reward} ASTR</Text>
                 </TouchableOpacity>
                 )) 
               }
@@ -149,6 +214,7 @@ const ClientProfile = ({ navigation }) => {
     const styles = StyleSheet.create({
       container: {
         flex: 1,
+        backgroundColor : "#fff"
       },
       button : {
         color : "#000",
@@ -159,7 +225,12 @@ const ClientProfile = ({ navigation }) => {
         alignItems : "center",
         justifyContent : "center",
         margin : 30
-      }
+      },
+      overlay: {
+        ...StyleSheet.absoluteFillObject, 
+        backgroundColor: '#D9D9D9', 
+        zIndex : 0
+      },
     });
     
     export default ClientProfile;

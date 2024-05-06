@@ -12,6 +12,7 @@ import {
   ActivityIndicator,
   Platform,
   ScrollView,
+  KeyboardAvoidingView
 } from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import axios from 'axios';
@@ -37,16 +38,24 @@ const CreateProfile = ({ navigation }) => {
     const [image, setImage] = useState("");
     const [imageUpload, setImageUpload] = useState();
     const [twitter, setTwitter] = useState("");
-    const [interest, setInterest] = useState();
+    const [interest, setInterest] = useState('');
     const [loading, setLoading] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
     const {wallet, setUserData, userData, talentSelected, clientSelected, setImageuri} = useData()
+    const [profileLoader, setProfileLoader] = useState(false);
+    const [imageLoader, setImageLoader] = useState(false);
 
     const types = [
-      "Smart Contract",
-      "teste 1",
-      "teste 2",
+      "⁠Infrastructure",
+      "⁠DAOs",
+      "⁠DeFi",
+      "⁠DePIN",
+      "⁠Consumer dApps",
+      "⁠Wallet and Payment",
+      "⁠NFTs",
+      "⁠Gaming",
+      "⁠Cross-Chain"
   ]
 
   function generateRandomString(length) {
@@ -117,6 +126,7 @@ const CreateProfile = ({ navigation }) => {
           } else if (response.error) {
             console.log('Image picker error: ', response.error);
           } else {
+            setImageLoader(true);
             const uri = response.assets?.[0]?.uri;
             const type = response.assets?.[0]?.type;
             const fileName = response.assets?.[0]?.fileName;
@@ -147,11 +157,17 @@ const CreateProfile = ({ navigation }) => {
             });
             console.log(data)
             setImageUpload(`https://isikpgdobtvvdcfkrruy.supabase.co/storage/v1/object/public/unity/${data.path}`);
+            setImageLoader(false);
           }
         });
       };
     
       const updateProfile = async () => {
+        if(name === '' || bio === '' || imageUpload === '' || interest === '' || twitter === ''){
+          Alert.alert("Fields can't be empty")
+          return
+        } else {
+        setProfileLoader(true);
         const upload = await axios.post(`${baseURL}/createProfileService`, {
           walletAddress : userData?.walletAddress, 
           name, 
@@ -162,10 +178,18 @@ const CreateProfile = ({ navigation }) => {
         })
         if(upload.data){
           setUserData(upload.data.user);
-          navigation.navigate('Profile');        }
+          navigation.navigate('Profile');     
+          setProfileLoader(false);
+        }
       }
+    }
 
       const updateProfileCompany = async () => {
+        if(companyName === '' || website === '' || imageUpload === '' || interest === '' || twitter === ''){
+          Alert.alert("Fields can't be empty")
+          return
+        } else {
+        setProfileLoader(true);
         const upload = await axios.post(`${baseURL}/createProfileClient`, {
           walletAddress : userData?.walletAddress, 
           companyName, 
@@ -176,12 +200,15 @@ const CreateProfile = ({ navigation }) => {
         })
         if(upload.data){
           setUserData(upload.data.user);
-          navigation.navigate('ClientProfile');        }
+          navigation.navigate('ClientProfile');  
+          setProfileLoader(false);
+        }
+      }
       }
 
-      console.log(imageUpload)
   
     return (
+      
         <View style={styles.container}>
             <View style={{display : menuOpen ? 'flex' : 'none', position : "absolute", bottom : 0, backgroundColor : "rgba(255,255,255,0.7)", borderColor : 'rgba(0,0,0,0.5)', borderWidth : 1, zIndex : 999, width : "100%", height : "20%", alignItems : "center", borderRadius : 10}}>
                     <TouchableOpacity onPress={() => setMenuOpen(!menuOpen)}></TouchableOpacity>
@@ -198,7 +225,7 @@ const CreateProfile = ({ navigation }) => {
             <Text style={{fontWeight : "500", fontSize : 14, color : "#000000", marginBottom : 10, fontFamily : "Inter-Light"}}>You're almost there</Text>
             <Text style={{fontWeight : "500", fontSize : 34, color : "#000000", marginBottom : 10, fontFamily : "Inter-Regular"}}>Setup your profile</Text>
             </View>
-
+            
             <View style={{position : "absolute", top : "30%", left : "5%"}}>
             <View style={{width : '90%'}}>
             <Text style={{marginLeft : 10}}>{talentSelected ? 'Name' : 'Company Name'}</Text>
@@ -246,8 +273,17 @@ const CreateProfile = ({ navigation }) => {
               <View style={styles.choosefileview}>
               <Image source={image ? {uri: image.uri} : require("../assets/Images/black.png")} style={{width: 50, height: 50, borderRadius : 50}}/>
               <View>
+                {imageLoader ? (
+                  <ActivityIndicator/>
+                ) : imageUpload ? (
+                  <Text>Image Uploaded</Text>
+                ) : (
+                  <>
+                
                 <Text>Click to upload media</Text>
                 <Text>Maximum size: 5MB</Text>
+                </>
+                )}
               </View>
               </View>
             </TouchableOpacity>
@@ -295,8 +331,8 @@ const CreateProfile = ({ navigation }) => {
             />
             </View>
             <TouchableOpacity style={styles.button} onPress={()=>{talentSelected ? updateProfile() : updateProfileCompany()}}>
-                {loading ? (
-                    <ActivityIndicator size={'large'} color={'black'}/>
+                {profileLoader ? (
+                    <ActivityIndicator size={'large'} color={'white'}/>
                 ) : (
                     <Text style={{fontWeight : "500", fontSize : 20, color : "#fff", fontFamily : "Inter-Regular"}} >Complete my Profile</Text>
                 )}
@@ -312,6 +348,7 @@ const CreateProfile = ({ navigation }) => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor : "#fff"
       },
       button : {
         backgroundColor : "#000",

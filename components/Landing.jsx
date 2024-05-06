@@ -37,7 +37,6 @@ const Landing = ({ navigation }) => {
     login()
   },[wallet]);
 
-  console.log(userData)
   useEffect(() => {
     Animated.sequence([
       Animated.timing(blinkAnimation, {
@@ -55,10 +54,12 @@ const Landing = ({ navigation }) => {
     ]).start(({ finished }) => {
       if (finished) {
         if(checkWallet){
-          if(userData?.serviceProvider !== null) {
+          if(userData && userData?.serviceProvider !== null) {
           navigation.dispatch(StackActions.replace('Profile')); 
-          } else {
+          } else if(userData && userData?.client !== null) {
             navigation.dispatch(StackActions.replace('ClientProfile'));
+          } else {
+            navigation.dispatch(StackActions.replace('Splash')); 
           }
         } else {
         navigation.dispatch(StackActions.replace('Splash')); 
@@ -68,7 +69,8 @@ const Landing = ({ navigation }) => {
     return () => {
       blinkAnimation.removeAllListeners(); 
     };
-  }, [blinkAnimation, navigation, checkWallet]);
+  }, [blinkAnimation, navigation, checkWallet, userData]);
+
   const loadImage = () => {
     try {
       return <View style={{width : 70, height : 70, alignItems : "center", justifyContent : "center", borderRadius : 5}}>
@@ -99,6 +101,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor : "#fff"
   },
   blinkingDot: {
     width: 16,

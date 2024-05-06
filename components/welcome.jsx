@@ -28,6 +28,14 @@ const Welcome = ({navigation}) => {
             setWallet(wallet)
         }
     }
+    const login = async () => {
+      const sign = await axios.post(`${baseURL}/getProfile`, {
+          walletAddress : wallet.toLowerCase()
+      })
+      if(sign.data){
+          setUserData(sign.data.user);
+      }
+  }
 
     const signup = async () => {
         const sign = await axios.post(`${baseURL}/signup`, {
@@ -36,6 +44,8 @@ const Welcome = ({navigation}) => {
         if(sign.data){
             console.log("signup", sign.data.user);
             setUserData(sign.data.user);
+        } else {
+          login()
         }
     }
 
@@ -47,7 +57,6 @@ const Welcome = ({navigation}) => {
         signup()
     },[wallet]);
 
-    console.log(userData)
 
     const handleClick = () => {
         if(!talentSelected && !clientSelected){
@@ -84,6 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor : "#fff"
   },
   button : {
     backgroundColor : "#000",
